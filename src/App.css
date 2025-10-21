@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+#root {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.box {
+  width: 500px;
+  height: 500px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(142, 159, 255);
+
+  margin: 5rem;
+}
+
+.block {
+  background-color: rgb(142, 255, 199);
+}
+
+.h1 {
+  font-size: 100px;
+  font-weight: 600;
+  color: rgb(240, 168, 67);
+  display: block;
+}
+
+.squid-game-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  min-height: 500dvh;
+  background-color: #060606;
+}
+
+.squid-game-container * {
+  color: #f1f1f1;
+}
+
+.squid-game-container .container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.squid-game-container .container .line {
+  height: 8px;
+  width: 100%;
+  background-color: #f1f1f1;
+}
+
+.squid-game-container .container .vertical-line {
+  width: 8px;
+  height: 100%;
+  background-color: #f1f1f1;
+}
+
+.squid-game-container .container .horizontal-line {
+  height: 8px;
+  width: 100%;
+  background-color: #f1f1f1;
+}
