@@ -36,7 +36,7 @@ const SquidGame = () => {
   const trapezoidYPosition = useTransform(
     scrollYProgress,
     [0, 1],
-    [0, Math.sqrt(3) * (WIDTH / 4) - THICKNESS]
+    [0, Math.sqrt(3) * (WIDTH / 4)]
   );
 
   const trapezezoidWidth = useTransform(
@@ -80,7 +80,6 @@ const SquidGame = () => {
             style={{
               width: `${WIDTH}px`,
               height: `calc(sqrt(3) * ${WIDTH / 2}px)`,
-              outline: "2px solid cyan",
               marginBottom: "1rem",
             }}
           >
@@ -89,14 +88,13 @@ const SquidGame = () => {
               height={`${THICKNESS}px`}
               angle={`calc(${THICKNESS}px / sqrt(3))`}
               style={{
-                // width: useTransform(
-                //   scrollYProgress,
-                //   [0, 1],
-                //   [WIDTH, 1.25 * WIDTH]
-                // ),
+                width: useTransform(
+                  scrollYProgress,
+                  [0, 1],
+                  [WIDTH, 1.25 * WIDTH]
+                ),
                 position: "absolute",
                 bottom: 0,
-                background: "yellow",
               }}
             ></MotionTrapezoid>
 
