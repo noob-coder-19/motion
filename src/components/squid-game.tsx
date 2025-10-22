@@ -30,20 +30,20 @@ const SquidGame = () => {
 
   const trapezpodXPosition = useTransform(
     scrollYProgress,
-    [0, 1],
-    [0, WIDTH / 2]
+    [0, 0.33, 1],
+    [0, WIDTH / 2, WIDTH / 2]
   );
 
   const trapezoidYPosition = useTransform(
     scrollYProgress,
-    [0, 1],
-    [0, Math.sqrt(3) * (WIDTH / 4)]
+    [0, 0.33, 1],
+    [0, Math.sqrt(3) * (WIDTH / 4), Math.sqrt(3) * (WIDTH / 4)]
   );
 
   const trapezezoidWidth = useTransform(
     scrollYProgress,
-    [0, 1],
-    [WIDTH, WIDTH / 2]
+    [0, 0.33, 1],
+    [WIDTH, WIDTH / 2, WIDTH / 2]
   );
 
   return (
@@ -111,11 +111,21 @@ const SquidGame = () => {
               style={{
                 width: useTransform(
                   scrollYProgress,
-                  [0, 1],
-                  [WIDTH, 1.25 * WIDTH]
+                  [0, 0.5, 0.75, 1],
+                  [WIDTH, 1.25 * WIDTH, WIDTH / 2, WIDTH / 2]
                 ),
                 position: "absolute",
-                bottom: 0,
+                bottom: useTransform(
+                  scrollYProgress,
+                  [0, 0.75, 1],
+                  [0, 0, -2 * THICKNESS]
+                ),
+                opacity: useTransform(scrollYProgress, [0, 0.75, 1], [1, 1, 0]),
+                right: useTransform(
+                  scrollYProgress,
+                  [0, 0.5, 1],
+                  [0, -WIDTH / 4, -WIDTH / 4]
+                ),
               }}
             ></MotionTrapezoid>
 
@@ -129,6 +139,7 @@ const SquidGame = () => {
                 transform: "rotate(-60deg)",
                 position: "absolute",
                 top: trapezoidYPosition,
+                opacity: useTransform(scrollYProgress, [0, 0.75, 1], [1, 1, 0]),
                 right: useTransform(trapezpodXPosition, (value) => {
                   return `calc(50% - ${value}px)`;
                 }),
@@ -146,6 +157,7 @@ const SquidGame = () => {
                 transform: "rotate(60deg)",
                 position: "absolute",
                 top: trapezoidYPosition,
+                opacity: useTransform(scrollYProgress, [0, 0.75, 1], [1, 1, 0]),
                 left: useTransform(
                   trapezpodXPosition,
                   (value) => `calc(50% + ${value}px)`
