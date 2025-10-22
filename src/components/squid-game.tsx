@@ -29,12 +29,6 @@ const SquidGame = () => {
     [0, -CIRCLE_CIRCUMFERENCE]
   );
 
-  const strokeDashoffsetCounterClockwise = useTransform(
-    scrollYProgress,
-    [0, 1],
-    [0, CIRCLE_CIRCUMFERENCE]
-  );
-
   const trapezpodXPosition = useTransform(
     scrollYProgress,
     [0, 1],
@@ -165,8 +159,8 @@ const SquidGame = () => {
                 r={CIRCLE_RADIUS}
                 style={{
                   strokeDasharray: CIRCLE_CIRCUMFERENCE,
-                  strokeDashoffset: strokeDashoffsetCounterClockwise,
-                  rotate: -90,
+                  strokeDashoffset: strokeDashoffsetClockwise,
+                  rotate: 90,
                   transformOrigin: "center center",
                 }}
                 stroke={"white"}
