@@ -16,7 +16,7 @@ const SquidGame = () => {
   const THICKNESS = 12;
 
   // Derived circle constants
-  const CIRCLE_DIAMETER = 0.75 * WIDTH;
+  const CIRCLE_DIAMETER = 0.5 * WIDTH;
   const CIRCLE_RADIUS = CIRCLE_DIAMETER / 2;
   const CIRCLE_STROKE_WIDTH = THICKNESS;
   const CIRCLE_CIRCUMFERENCE = 2 * Math.PI * CIRCLE_RADIUS;
@@ -57,7 +57,7 @@ const SquidGame = () => {
           {/* circle - top */}
           <div
             className="circle-top flex flex-col items-center justify-center"
-            style={{ marginBottom: "-40px" }}
+            style={{ marginBottom: `-${CIRCLE_CENTER}px` }}
           >
             <svg width={SVG_SIZE} height={SVG_SIZE}>
               <motion.circle
@@ -150,7 +150,9 @@ const SquidGame = () => {
           {/* circle - bottom */}
           <div
             className="circle-bottom flex flex-col items-center justify-center"
-            style={{ marginTop: "-40px" }}
+            style={{
+              marginTop: `-${CIRCLE_CENTER + CIRCLE_STROKE_WIDTH / 2}px`,
+            }}
           >
             <svg width={SVG_SIZE} height={SVG_SIZE}>
               <motion.circle
