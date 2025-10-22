@@ -28,12 +28,6 @@ const SquidGame = () => {
     [0, -CIRCLE_CIRCUMFERENCE]
   );
 
-  const trapezpodXPosition = useTransform(
-    scrollYProgress,
-    [0, 0.33, 1],
-    [0, WIDTH / 2, WIDTH / 2]
-  );
-
   const trapezoidYPosition = useTransform(
     scrollYProgress,
     [0, 0.33, 1],
@@ -140,8 +134,20 @@ const SquidGame = () => {
                 position: "absolute",
                 top: trapezoidYPosition,
                 opacity: useTransform(scrollYProgress, [0, 0.75, 1], [1, 1, 0]),
-                right: useTransform(trapezpodXPosition, (value) => {
-                  return `calc(50% - ${value}px)`;
+                right: useTransform(scrollYProgress, (value) => {
+                  // from 0 till 0.33, move to the right
+                  if (value <= 0.33) {
+                    return `calc(50% - ${(value * 3 * WIDTH) / 2}px)`;
+                  }
+
+                  // from 0.33 till 0.75, stay at the same position
+                  if (value <= 0.75) {
+                    return `calc(50% - ${WIDTH / 2}px)`;
+                  }
+
+                  return `calc(50% - ${WIDTH / 2}px + ${
+                    ((value - 0.75) * WIDTH) / 2
+                  }px)`;
                 }),
                 transformOrigin: "top right",
               }}
@@ -158,10 +164,21 @@ const SquidGame = () => {
                 position: "absolute",
                 top: trapezoidYPosition,
                 opacity: useTransform(scrollYProgress, [0, 0.75, 1], [1, 1, 0]),
-                left: useTransform(
-                  trapezpodXPosition,
-                  (value) => `calc(50% + ${value}px)`
-                ),
+                left: useTransform(scrollYProgress, (value) => {
+                  // from 0 till 0.33, move to the right
+                  if (value <= 0.33) {
+                    return `calc(50% + ${(value * 3 * WIDTH) / 2}px)`;
+                  }
+
+                  // from 0.33 till 0.75, stay at the same position
+                  if (value <= 0.75) {
+                    return `calc(50% + ${WIDTH / 2}px)`;
+                  }
+
+                  return `calc(50% + ${WIDTH / 2}px + ${
+                    ((value - 0.75) * WIDTH) / 2
+                  }px)`;
+                }),
                 transformOrigin: "top left",
               }}
             ></MotionTrapezoid>
