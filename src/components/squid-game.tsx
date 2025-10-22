@@ -1,6 +1,5 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
-import Square from "../ui/square";
 import Trapezoid from "../ui/trapezoid";
 
 const MotionTrapezoid = motion.create(Trapezoid, { forwardMotionProps: true });
@@ -25,7 +24,7 @@ const SquidGame = () => {
 
   const strokeDashoffsetClockwise = useTransform(
     scrollYProgress,
-    [0, 1],
+    [0, 0.5],
     [0, -CIRCLE_CIRCUMFERENCE]
   );
 
@@ -56,9 +55,28 @@ const SquidGame = () => {
         <div className="container">
           {/* circle - top */}
           <div
-            className="circle-top flex flex-col items-center justify-center"
+            className="circle-top relative flex flex-col items-center justify-center"
             style={{ marginBottom: `-${CIRCLE_CENTER}px` }}
           >
+            <MotionTrapezoid
+              width={`${THICKNESS}px`}
+              height={`${THICKNESS}px`}
+              angle={"0%"}
+              style={{
+                width: useTransform(
+                  scrollYProgress,
+                  [0, 0.5, 1],
+                  [0, WIDTH, 0]
+                ),
+                position: "absolute",
+                top: `${THICKNESS / 2}px`,
+                right: useTransform(
+                  scrollYProgress,
+                  [0, 0.5, 1],
+                  [SVG_SIZE / 2, -SVG_SIZE, -SVG_SIZE]
+                ),
+              }}
+            ></MotionTrapezoid>
             <svg width={SVG_SIZE} height={SVG_SIZE}>
               <motion.circle
                 cx={CIRCLE_CENTER}
@@ -77,6 +95,7 @@ const SquidGame = () => {
             </svg>
           </div>
 
+          {/* Triangle */}
           <div
             className="triangle relative"
             style={{
@@ -137,23 +156,108 @@ const SquidGame = () => {
           </div>
 
           {/* square */}
-          <Square
-            size={`${WIDTH}px`}
-            thickness={`${THICKNESS}px`}
-            style={
-              {
-                // outline: "2px solid yellow"
-              }
-            }
-          ></Square>
+          <div
+            className="square relative"
+            style={{
+              width: `${WIDTH}px`,
+              height: `${WIDTH}px`,
+            }}
+          >
+            <MotionTrapezoid
+              width={`${THICKNESS}px`}
+              height={`${WIDTH}px`}
+              angle={"0%"}
+              style={{
+                position: "absolute",
+                bottom: 0,
+                right: 0,
+                height: useTransform(
+                  scrollYProgress,
+                  [0, 0.5, 1],
+                  [WIDTH, WIDTH, 0]
+                ),
+              }}
+            ></MotionTrapezoid>
+
+            <MotionTrapezoid
+              width={`${WIDTH}px`}
+              height={`${THICKNESS}px`}
+              angle={"0%"}
+              style={{
+                position: "absolute",
+                bottom: 0,
+                left: useTransform(
+                  scrollYProgress,
+                  [0, 0.5, 1],
+                  [0, WIDTH / 2, 2 * WIDTH]
+                ),
+                width: useTransform(
+                  scrollYProgress,
+                  [0, 0.75, 1],
+                  [WIDTH, WIDTH, 0]
+                ),
+              }}
+            ></MotionTrapezoid>
+
+            <MotionTrapezoid
+              width={`${WIDTH}px`}
+              height={`${THICKNESS}px`}
+              angle={"0%"}
+              style={{
+                position: "absolute",
+                top: 0,
+                right: useTransform(scrollYProgress, [0, 1], [0, -1 * WIDTH]),
+                width: useTransform(
+                  scrollYProgress,
+                  [0, 0.5, 1],
+                  [WIDTH, WIDTH, 0]
+                ),
+              }}
+            ></MotionTrapezoid>
+
+            <MotionTrapezoid
+              width={`${THICKNESS}px`}
+              height={`${WIDTH}px`}
+              angle={"0%"}
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                height: useTransform(
+                  scrollYProgress,
+                  [0, 0.75, 1],
+                  [WIDTH, WIDTH, 0]
+                ),
+              }}
+            ></MotionTrapezoid>
+          </div>
 
           {/* circle - bottom */}
           <div
-            className="circle-bottom flex flex-col items-center justify-center"
+            className="circle-bottom relative flex flex-col items-center justify-center"
             style={{
               marginTop: `-${CIRCLE_CENTER + CIRCLE_STROKE_WIDTH / 2}px`,
             }}
           >
+            <MotionTrapezoid
+              width={`${THICKNESS}px`}
+              height={`${THICKNESS}px`}
+              angle={"0%"}
+              style={{
+                width: useTransform(
+                  scrollYProgress,
+                  [0, 0.5, 1],
+                  [0, WIDTH, 0]
+                ),
+                position: "absolute",
+                bottom: `${THICKNESS / 2}px`,
+                left: useTransform(
+                  scrollYProgress,
+                  [0, 0.5, 1],
+                  [SVG_SIZE / 2, -SVG_SIZE, -SVG_SIZE]
+                ),
+              }}
+            ></MotionTrapezoid>
             <svg width={SVG_SIZE} height={SVG_SIZE}>
               <motion.circle
                 cx={CIRCLE_CENTER}
