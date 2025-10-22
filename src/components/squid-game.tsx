@@ -11,20 +11,22 @@ const SquidGame = () => {
     target: containerRef,
   });
 
-  const circumference = 2 * Math.PI * 35; // radius is 35
+  // Base constants
   const WIDTH = 160;
   const THICKNESS = 12;
+
+  // Derived circle constants
+  const CIRCLE_DIAMETER = 0.5 * WIDTH;
+  const CIRCLE_RADIUS = CIRCLE_DIAMETER / 2;
+  const CIRCLE_STROKE_WIDTH = THICKNESS;
+  const CIRCLE_CIRCUMFERENCE = 2 * Math.PI * CIRCLE_RADIUS;
+  const SVG_SIZE = 2 * (CIRCLE_RADIUS + CIRCLE_STROKE_WIDTH / 2) + 12; // Added 12px buffer
+  const CIRCLE_CENTER = SVG_SIZE / 2;
 
   const strokeDashoffsetClockwise = useTransform(
     scrollYProgress,
     [0, 1],
-    [0, -circumference]
-  );
-
-  const strokeDashoffsetCounterClockwise = useTransform(
-    scrollYProgress,
-    [0, 1],
-    [0, circumference]
+    [0, -CIRCLE_CIRCUMFERENCE]
   );
 
   const trapezpodXPosition = useTransform(
@@ -55,21 +57,21 @@ const SquidGame = () => {
           {/* circle - top */}
           <div
             className="circle-top flex flex-col items-center justify-center"
-            style={{ marginBottom: "-40px" }}
+            style={{ marginBottom: `-${CIRCLE_CENTER}px` }}
           >
-            <svg width="80" height="80">
+            <svg width={SVG_SIZE} height={SVG_SIZE}>
               <motion.circle
-                cx={40}
-                cy={40}
-                r={35}
+                cx={CIRCLE_CENTER}
+                cy={CIRCLE_CENTER}
+                r={CIRCLE_RADIUS}
                 style={{
-                  strokeDasharray: circumference,
+                  strokeDasharray: CIRCLE_CIRCUMFERENCE,
                   strokeDashoffset: strokeDashoffsetClockwise,
                   rotate: -90,
                   transformOrigin: "center center",
                 }}
                 stroke={"white"}
-                strokeWidth={8}
+                strokeWidth={CIRCLE_STROKE_WIDTH}
                 fill="none"
               />
             </svg>
@@ -148,21 +150,23 @@ const SquidGame = () => {
           {/* circle - bottom */}
           <div
             className="circle-bottom flex flex-col items-center justify-center"
-            style={{ marginTop: "-40px" }}
+            style={{
+              marginTop: `-${CIRCLE_CENTER + CIRCLE_STROKE_WIDTH / 2}px`,
+            }}
           >
-            <svg width="80" height="80">
+            <svg width={SVG_SIZE} height={SVG_SIZE}>
               <motion.circle
-                cx={40}
-                cy={40}
-                r={35}
+                cx={CIRCLE_CENTER}
+                cy={CIRCLE_CENTER}
+                r={CIRCLE_RADIUS}
                 style={{
-                  strokeDasharray: circumference,
-                  strokeDashoffset: strokeDashoffsetCounterClockwise,
-                  rotate: -90,
+                  strokeDasharray: CIRCLE_CIRCUMFERENCE,
+                  strokeDashoffset: strokeDashoffsetClockwise,
+                  rotate: 90,
                   transformOrigin: "center center",
                 }}
                 stroke={"white"}
-                strokeWidth={8}
+                strokeWidth={CIRCLE_STROKE_WIDTH}
                 fill="none"
               />
             </svg>
