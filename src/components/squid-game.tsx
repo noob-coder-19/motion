@@ -40,12 +40,12 @@ const SquidGame = () => {
   const leftTrapezoidXPosition = useTransform(
     scrollYProgress, 
     [SCROLL_PROGRESS_0, SCROLL_PROGRESS_33, SCROLL_PROGRESS_75, SCROLL_PROGRESS_100], 
-    [0, WIDTH / 4 + WIDTH / 8, WIDTH / 4 + WIDTH / 8, WIDTH / 4 + WIDTH / 4]);
+    [0, (WIDTH / 2) * (1 - TRIANGLE_SCALE_DOWN_FACTOR), (WIDTH / 2) * (1 - TRIANGLE_SCALE_DOWN_FACTOR), (WIDTH / 2) * (1 - TRIANGLE_SCALE_DOWN_FACTOR) + (2 * THICKNESS)]);
 
   const rightTrapezoidXPosition = useTransform(
     scrollYProgress, 
     [SCROLL_PROGRESS_0, SCROLL_PROGRESS_33, SCROLL_PROGRESS_75, SCROLL_PROGRESS_100], 
-    [0, WIDTH / 4 + WIDTH / 8, WIDTH / 4 + WIDTH / 8, WIDTH / 4]);
+    [0, (WIDTH / 2) * (1 - TRIANGLE_SCALE_DOWN_FACTOR), (WIDTH / 2) * (1 - TRIANGLE_SCALE_DOWN_FACTOR), (WIDTH / 2) * (1 - TRIANGLE_SCALE_DOWN_FACTOR) - (2 * THICKNESS)]);
 
   const trapezezoidWidth = useTransform(
     scrollYProgress,
