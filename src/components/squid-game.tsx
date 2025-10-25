@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import Trapezoid from "../ui/trapezoid";
-import { SCROLL_PROGRESS_0, SCROLL_PROGRESS_100, SCROLL_PROGRESS_33, SCROLL_PROGRESS_50, SCROLL_PROGRESS_75, SQUID_GAME_THICKNESS, SQUID_GAME_WIDTH } from "../constants";
+import { SCROLL_PROGRESS_0, SCROLL_PROGRESS_100, SCROLL_PROGRESS_33, SCROLL_PROGRESS_50, SCROLL_PROGRESS_75, SQUID_GAME_THICKNESS, SQUID_GAME_TRIANGLE_SCALE_DOWN_FACTOR, SQUID_GAME_WIDTH } from "../constants";
 
 const MotionTrapezoid = motion.create(Trapezoid, { forwardMotionProps: true });
 
@@ -14,6 +14,7 @@ const SquidGame = () => {
   // Base constants
   const WIDTH = SQUID_GAME_WIDTH;
   const THICKNESS = SQUID_GAME_THICKNESS;
+  const TRIANGLE_SCALE_DOWN_FACTOR = SQUID_GAME_TRIANGLE_SCALE_DOWN_FACTOR;
 
   // Derived circle constants
   const CIRCLE_DIAMETER = 0.5 * WIDTH;
@@ -33,7 +34,7 @@ const SquidGame = () => {
   const trapezoidYPosition = useTransform(
     scrollYProgress,
     [SCROLL_PROGRESS_0, SCROLL_PROGRESS_33, SCROLL_PROGRESS_100],
-    [0, 3 * TRIANGLE_HEIGHT / 4, 3 * TRIANGLE_HEIGHT / 4]
+    [0, (1 - TRIANGLE_SCALE_DOWN_FACTOR) * TRIANGLE_HEIGHT, (1 - TRIANGLE_SCALE_DOWN_FACTOR) * TRIANGLE_HEIGHT]
   );
 
   const leftTrapezoidXPosition = useTransform(
@@ -49,7 +50,7 @@ const SquidGame = () => {
   const trapezezoidWidth = useTransform(
     scrollYProgress,
     [SCROLL_PROGRESS_0, SCROLL_PROGRESS_33, SCROLL_PROGRESS_100],
-    [WIDTH, WIDTH / 4, WIDTH / 4]
+    [WIDTH, TRIANGLE_SCALE_DOWN_FACTOR * WIDTH, TRIANGLE_SCALE_DOWN_FACTOR * WIDTH]
   );
 
   return (
@@ -119,7 +120,7 @@ const SquidGame = () => {
                 width: useTransform(
                   scrollYProgress,
                   [0, SCROLL_PROGRESS_33, SCROLL_PROGRESS_75, SCROLL_PROGRESS_100],
-                  [WIDTH, WIDTH, WIDTH / 4, WIDTH / 4]
+                  [WIDTH, WIDTH, TRIANGLE_SCALE_DOWN_FACTOR * WIDTH, TRIANGLE_SCALE_DOWN_FACTOR * WIDTH]
                 ),
                 position: "absolute",
                 bottom: useTransform(

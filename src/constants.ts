@@ -1,5 +1,6 @@
 export const SQUID_GAME_WIDTH = 200;
 export const SQUID_GAME_THICKNESS = 12;
+export const SQUID_GAME_TRIANGLE_SCALE_DOWN_FACTOR = 0.5;
 
 export const SCROLL_PROGRESS_0 = 0;
 export const SCROLL_PROGRESS_10 = 0.1;
