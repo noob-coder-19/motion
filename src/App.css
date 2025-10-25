@@ -76,3 +76,15 @@ html {
   width: 100%;
   background-color: #f1f1f1;
 }
+
+.ayush-container {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.letter {
+  position: relative;
+  display: flex;
+}
