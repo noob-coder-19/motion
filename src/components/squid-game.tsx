@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import Trapezoid from "../ui/trapezoid";
-import { SCROLL_PROGRESS_0, SCROLL_PROGRESS_100, SCROLL_PROGRESS_33, SCROLL_PROGRESS_50, SCROLL_PROGRESS_75, SQUID_GAME_THICKNESS, SQUID_GAME_TRIANGLE_SCALE_DOWN_FACTOR, SQUID_GAME_WIDTH } from "../constants";
+import { SCROLL_PROGRESS_0, SCROLL_PROGRESS_100, SCROLL_PROGRESS_12_5, SCROLL_PROGRESS_33, SCROLL_PROGRESS_50, SCROLL_PROGRESS_75, SQUID_GAME_THICKNESS, SQUID_GAME_TRIANGLE_SCALE_DOWN_FACTOR, SQUID_GAME_WIDTH } from "../constants";
 
 const MotionTrapezoid = motion.create(Trapezoid, { forwardMotionProps: true });
 
@@ -72,15 +72,15 @@ const SquidGame = () => {
               style={{
                 width: useTransform(
                   scrollYProgress,
-                  [0, 0.5, 1],
-                  [0, 2 * SVG_SIZE, 0]
+                  [0, SCROLL_PROGRESS_12_5, 0.5, 1],
+                  [0, 0, 2 * SVG_SIZE, 0]
                 ),
                 position: "absolute",
                 top: `${THICKNESS / 2}px`,
                 right: useTransform(
                   scrollYProgress,
-                  [0, 0.5, 1],
-                  [SVG_SIZE / 2, -1.5 * SVG_SIZE, -2 * SVG_SIZE]
+                  [0, SCROLL_PROGRESS_12_5, 0.5, 1],
+                  [SVG_SIZE / 2, SVG_SIZE / 2, -1.5 * SVG_SIZE, -2 * SVG_SIZE]
                 ),
               }}
             ></MotionTrapezoid>
@@ -259,15 +259,15 @@ const SquidGame = () => {
               style={{
                 width: useTransform(
                   scrollYProgress,
-                  [0, 0.5, 1],
-                  [0, 2 * SVG_SIZE, 0]
+                  [0, SCROLL_PROGRESS_12_5, 0.5, 1],
+                  [0, 0, 2 * SVG_SIZE, 0]
                 ),
                 position: "absolute",
                 bottom: `${THICKNESS / 2}px`,
                 left: useTransform(
                   scrollYProgress,
-                  [0, 0.5, 1],
-                  [SVG_SIZE / 2, -1.5 * SVG_SIZE, -2 * SVG_SIZE]
+                  [0, SCROLL_PROGRESS_12_5, 0.5, 1],
+                  [SVG_SIZE / 2, SVG_SIZE / 2, -1.5 * SVG_SIZE, -2 * SVG_SIZE]
                 ),
               }}
             ></MotionTrapezoid>
