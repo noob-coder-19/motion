@@ -31,6 +31,18 @@ const SquidGame = () => {
     [0, -CIRCLE_CIRCUMFERENCE]
   );
 
+  const circleTrapezoidWidth = useTransform(
+    scrollYProgress,
+    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_12_5, SCROLL_PROGRESS_50, SCROLL_PROGRESS_100],
+    [0, 0, 2 * SVG_SIZE, 0]
+  )
+
+  const circleTrapezoidXPosition = useTransform(
+    scrollYProgress,
+    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_12_5, SCROLL_PROGRESS_50, SCROLL_PROGRESS_100],
+    [SVG_SIZE / 2, SVG_SIZE / 2, -1.5 * SVG_SIZE, -1.5 * SVG_SIZE]
+  )
+
   const trapezoidYPosition = useTransform(
     scrollYProgress,
     [SCROLL_PROGRESS_0, SCROLL_PROGRESS_33, SCROLL_PROGRESS_100],
@@ -70,18 +82,10 @@ const SquidGame = () => {
               height={`${THICKNESS}px`}
               angle={"0%"}
               style={{
-                width: useTransform(
-                  scrollYProgress,
-                  [0, SCROLL_PROGRESS_12_5, 0.5, 1],
-                  [0, 0, 2 * SVG_SIZE, 0]
-                ),
+                width: circleTrapezoidWidth,
                 position: "absolute",
                 top: `${THICKNESS / 2}px`,
-                right: useTransform(
-                  scrollYProgress,
-                  [0, SCROLL_PROGRESS_12_5, 0.5, 1],
-                  [SVG_SIZE / 2, SVG_SIZE / 2, -1.5 * SVG_SIZE, -2 * SVG_SIZE]
-                ),
+                right: circleTrapezoidXPosition,
               }}
             ></MotionTrapezoid>
             <svg width={SVG_SIZE} height={SVG_SIZE}>
@@ -257,18 +261,10 @@ const SquidGame = () => {
               height={`${THICKNESS}px`}
               angle={"0%"}
               style={{
-                width: useTransform(
-                  scrollYProgress,
-                  [0, SCROLL_PROGRESS_12_5, 0.5, 1],
-                  [0, 0, 2 * SVG_SIZE, 0]
-                ),
+                width: circleTrapezoidWidth,
                 position: "absolute",
                 bottom: `${THICKNESS / 2}px`,
-                left: useTransform(
-                  scrollYProgress,
-                  [0, SCROLL_PROGRESS_12_5, 0.5, 1],
-                  [SVG_SIZE / 2, SVG_SIZE / 2, -1.5 * SVG_SIZE, -2 * SVG_SIZE]
-                ),
+                left: circleTrapezoidXPosition,
               }}
             ></MotionTrapezoid>
             <svg width={SVG_SIZE} height={SVG_SIZE}>
