@@ -153,6 +153,39 @@ const SquidGame = () => {
    *
    *
    */
+  /***** Top square side animation controls *****/
+  const topSquareSideWidth = useTransform(
+    scrollYProgress,
+    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_50, SCROLL_PROGRESS_100],
+    [WIDTH, 1.5 * WIDTH, 0]
+  );
+
+  /***** Bottom square side animation controls *****/
+  const bottomSquareSideWidth = useTransform(
+    scrollYProgress,
+    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_50, SCROLL_PROGRESS_100],
+    [WIDTH, WIDTH, 0]
+  );
+
+  const horizontalSideXPositionOffset = useTransform(
+    scrollYProgress,
+    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_100],
+    [0, -WIDTH]
+  );
+
+  /***** Left square side animation controls *****/
+  const leftSquareSideHeight = useTransform(
+    scrollYProgress,
+    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_75, SCROLL_PROGRESS_100],
+    [WIDTH, WIDTH, 0]
+  );
+
+  /***** Right square side animation controls *****/
+  const rightSquareSideHeight = useTransform(
+    scrollYProgress,
+    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_50, SCROLL_PROGRESS_100],
+    [WIDTH, WIDTH, 0]
+  );
 
   return (
     <div ref={containerRef} className="squid-game-container">
@@ -270,11 +303,7 @@ const SquidGame = () => {
                 position: "absolute",
                 bottom: 0,
                 right: 0,
-                height: useTransform(
-                  scrollYProgress,
-                  [0, 0.5, 1],
-                  [WIDTH, WIDTH, 0]
-                ),
+                height: rightSquareSideHeight,
               }}
             ></MotionTrapezoid>
 
@@ -286,16 +315,8 @@ const SquidGame = () => {
               style={{
                 position: "absolute",
                 bottom: 0,
-                right: useTransform(
-                  scrollYProgress,
-                  [0, 0.5, 1],
-                  [0, (-1 * WIDTH) / 2, -1 * WIDTH]
-                ),
-                width: useTransform(
-                  scrollYProgress,
-                  [0, 0.75, 1],
-                  [WIDTH, WIDTH, 0]
-                ),
+                right: horizontalSideXPositionOffset,
+                width: bottomSquareSideWidth,
               }}
             ></MotionTrapezoid>
 
@@ -307,12 +328,8 @@ const SquidGame = () => {
               style={{
                 position: "absolute",
                 top: 0,
-                right: useTransform(scrollYProgress, [0, 1], [0, -1 * WIDTH]),
-                width: useTransform(
-                  scrollYProgress,
-                  [0, 0.5, 1],
-                  [WIDTH, WIDTH, 0]
-                ),
+                right: horizontalSideXPositionOffset,
+                width: topSquareSideWidth,
               }}
             ></MotionTrapezoid>
 
@@ -325,11 +342,7 @@ const SquidGame = () => {
                 position: "absolute",
                 top: 0,
                 left: 0,
-                height: useTransform(
-                  scrollYProgress,
-                  [0, 0.75, 1],
-                  [WIDTH, WIDTH, 0]
-                ),
+                height: leftSquareSideHeight,
               }}
             ></MotionTrapezoid>
           </div>
