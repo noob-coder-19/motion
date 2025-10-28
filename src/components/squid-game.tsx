@@ -188,7 +188,7 @@ const SquidGame = () => {
 
       {/* Squid game grid */}
       <>
-        <div className="container">
+        <div className="container fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
           {/* circle - top */}
           <div
             className="circle-top relative flex flex-col items-center justify-center"
@@ -377,6 +377,58 @@ const SquidGame = () => {
               />
             </svg>
           </div>
+        </div>
+
+        <div className="flex items-center justify-center fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          {/* A shape */}
+          <div
+            className="shape-a"
+            style={{
+              width: `${SQUID_GAME_WIDTH}px`,
+              height: `${SQUID_GAME_WIDTH}px`,
+              outline: "1px solid red",
+            }}
+          ></div>
+
+          {/* Y shape */}
+          <div
+            className="shape-a"
+            style={{
+              width: `${SQUID_GAME_WIDTH}px`,
+              height: `${SQUID_GAME_WIDTH}px`,
+              outline: "1px solid red",
+            }}
+          ></div>
+
+          {/* U shape */}
+          <div
+            className="shape-a"
+            style={{
+              width: `${SQUID_GAME_WIDTH}px`,
+              height: `${SQUID_GAME_WIDTH}px`,
+              outline: "1px solid red",
+            }}
+          ></div>
+
+          {/* S shape */}
+          <div
+            className="shape-a"
+            style={{
+              width: `${SQUID_GAME_WIDTH}px`,
+              height: `${SQUID_GAME_WIDTH}px`,
+              outline: "1px solid red",
+            }}
+          ></div>
+
+          {/* H shape */}
+          <div
+            className="shape-a"
+            style={{
+              width: `${SQUID_GAME_WIDTH}px`,
+              height: `${SQUID_GAME_WIDTH}px`,
+              outline: "1px solid red",
+            }}
+          ></div>
         </div>
       </>
     </div>
