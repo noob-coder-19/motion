@@ -195,6 +195,8 @@ const SquidGame = () => {
     [SQUID_GAME_WIDTH, SQUID_GAME_WIDTH, 0]
   );
 
+  const LETTER_A_WIDTH = (2 * LETTERS_WIDTH) / Math.sqrt(3);
+
   return (
     <div ref={containerRef} className="squid-game-container">
       <h1>Squid Game</h1>
@@ -399,11 +401,60 @@ const SquidGame = () => {
           <div
             className="shape-a"
             style={{
-              width: `${LETTERS_WIDTH}px`,
+              width: `${LETTER_A_WIDTH}px`,
               height: `${LETTERS_WIDTH}px`,
               outline: "1px solid red",
             }}
-          ></div>
+          >
+            {/* Right side */}
+            <MotionTrapezoid
+              width={`${LETTER_A_WIDTH}px`}
+              height={`${SQUID_GAME_THICKNESS}px`}
+              angle={`calc(${SQUID_GAME_THICKNESS}px / sqrt(3))`}
+              variant="bottom"
+              style={{
+                width: `${LETTER_A_WIDTH}px`,
+                transform: "rotate(-60deg)",
+                position: "absolute",
+                top: 0,
+                left: `${-LETTER_A_WIDTH / 2}px`,
+                transformOrigin: "top right",
+              }}
+            ></MotionTrapezoid>
+
+            {/* Left side */}
+            <MotionTrapezoid
+              width={`${LETTER_A_WIDTH}px`}
+              height={`${SQUID_GAME_THICKNESS}px`}
+              angle={`calc(${SQUID_GAME_THICKNESS}px / sqrt(3))`}
+              variant="bottom"
+              style={{
+                width: `${LETTER_A_WIDTH}px`,
+                transform: "rotate(60deg)",
+                position: "absolute",
+                top: 0,
+                left: `${LETTER_A_WIDTH / 2}px`,
+                transformOrigin: "top left",
+              }}
+            ></MotionTrapezoid>
+
+            {/* Inner triangle */}
+            <MotionTrapezoid
+              width={`${LETTER_A_WIDTH - ((4 * SQUID_GAME_THICKNESS) / Math.sqrt(3))}px`}
+              height={`${LETTERS_WIDTH - (2 * SQUID_GAME_THICKNESS)}px`}
+              angle={`calc(${LETTERS_WIDTH - (2 * SQUID_GAME_THICKNESS)}px / sqrt(3))`}
+              style={{
+                width: `${LETTER_A_WIDTH - ((4 * SQUID_GAME_THICKNESS) / Math.sqrt(3))}px`,
+                position: "absolute",
+                bottom: 0,
+                backgroundColor: "var(--color-pink-400)",
+                left: `${SQUID_GAME_THICKNESS * (2 / Math.sqrt(3))}px`,
+                transformOrigin: "top left",
+              }}
+            ></MotionTrapezoid>
+
+            {/* Bottom Horizontal Bar (optional) -- this will disappear when the A shape is completed */}
+          </div>
 
           {/* Y shape */}
           <div
