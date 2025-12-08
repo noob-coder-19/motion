@@ -399,7 +399,7 @@ const SquidGame = () => {
         }}>
           {/* A shape */}
           <div
-            className="shape-a"
+            className="shape-a relative"
             style={{
               width: `${LETTER_A_WIDTH}px`,
               height: `${LETTERS_WIDTH}px`,
@@ -454,6 +454,16 @@ const SquidGame = () => {
             ></MotionTrapezoid>
 
             {/* Bottom Horizontal Bar (optional) -- this will disappear when the A shape is completed */}
+            <MotionTrapezoid
+              width={`${LETTER_A_WIDTH}px`}
+              height={`${SQUID_GAME_THICKNESS}px`}
+              angle={`calc(${SQUID_GAME_THICKNESS}px / sqrt(3))`}
+              style={{
+                position: "absolute",
+                bottom: 0,
+                right: 0,
+                width: `${LETTER_A_WIDTH}px`,
+              }}></MotionTrapezoid>
           </div>
 
           {/* Y shape */}
