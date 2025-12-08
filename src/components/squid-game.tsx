@@ -454,7 +454,7 @@ const SquidGame = () => {
             ></MotionTrapezoid>
 
             {/* Bottom Horizontal Bar (optional) -- this will disappear when the A shape is completed */}
-            <MotionTrapezoid
+            {/* <MotionTrapezoid
               width={`${LETTER_A_WIDTH}px`}
               height={`${SQUID_GAME_THICKNESS}px`}
               angle={`calc(${SQUID_GAME_THICKNESS}px / sqrt(3))`}
@@ -463,7 +463,7 @@ const SquidGame = () => {
                 bottom: 0,
                 right: 0,
                 width: `${LETTER_A_WIDTH}px`,
-              }}></MotionTrapezoid>
+              }}></MotionTrapezoid> */}
           </div>
 
           {/* Y shape */}
@@ -693,13 +693,60 @@ const SquidGame = () => {
 
           {/* H shape */}
           <div
-            className="shape-a"
+            className="shape-h relative flex flex-col items-center justify-center"
             style={{
               width: `${LETTERS_WIDTH}px`,
               height: `${LETTERS_WIDTH}px`,
               outline: "1px solid red",
             }}
-          ></div>
+          >
+            {/* Left Vertical Bar */}
+            <MotionTrapezoid
+              width={`${SQUID_GAME_THICKNESS}px`}
+              height={`${1.5 * LETTERS_WIDTH}px`}
+              angle={"0%"}
+              style={{
+                position: "absolute",
+                top: `${-LETTERS_WIDTH * 0.5}px`,
+                left: 0,
+                width: `${SQUID_GAME_THICKNESS}px`,
+              }}></MotionTrapezoid>
+
+            {/* Center fill */}
+            <MotionTrapezoid
+            width={`${LETTERS_WIDTH - 2 * SQUID_GAME_THICKNESS}px`}
+            height={`${(LETTERS_WIDTH - SQUID_GAME_THICKNESS) / 2}px`}
+            angle={"0%"}
+            style={{
+              position: "absolute",
+              top: 0,
+              backgroundColor: "var(--color-pink-400)",
+            }}></MotionTrapezoid>
+
+            {/* Right Vertical Bar */}
+            <MotionTrapezoid
+              width={`${SQUID_GAME_THICKNESS}px`}
+              height={`${1.5 * LETTERS_WIDTH}px`}
+              angle={"0%"}
+              style={{
+                position: "absolute",
+                bottom: `${-LETTERS_WIDTH * 0.5}px`,
+                right: 0,
+                width: `${SQUID_GAME_THICKNESS}px`,
+              }}></MotionTrapezoid>
+
+            {/* Centre horizontal bar */}
+            <MotionTrapezoid
+              width={`${LETTERS_WIDTH}px`}
+              height={`${SQUID_GAME_THICKNESS}px`}
+              angle={"0%"}
+              style={{
+                position: "absolute",
+                top: `50%`,
+                transform: `translateY(-50%)`,
+                width: `${LETTERS_WIDTH}px`,
+              }}></MotionTrapezoid>
+          </div>
         </div>
       </>
     </div>
