@@ -6,8 +6,12 @@ import {
   SCROLL_PROGRESS_0,
   SCROLL_PROGRESS_100,
   SCROLL_PROGRESS_12_5,
+  SCROLL_PROGRESS_16_67,
+  SCROLL_PROGRESS_25,
   SCROLL_PROGRESS_33,
+  SCROLL_PROGRESS_37_5,
   SCROLL_PROGRESS_50,
+  SCROLL_PROGRESS_6_25,
   SCROLL_PROGRESS_75,
   SQUID_GAME_THICKNESS,
   SQUID_GAME_TRIANGLE_SCALE_DOWN_FACTOR,
@@ -49,7 +53,7 @@ const SquidGame = () => {
 
   const strokeDashoffsetClockwise = useTransform(
     scrollYProgress,
-    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_50],
+    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_25],
     [0, -CIRCLE_CIRCUMFERENCE]
   );
 
@@ -57,9 +61,9 @@ const SquidGame = () => {
     scrollYProgress,
     [
       SCROLL_PROGRESS_0,
-      SCROLL_PROGRESS_12_5,
+      SCROLL_PROGRESS_6_25,
+      SCROLL_PROGRESS_25,
       SCROLL_PROGRESS_50,
-      SCROLL_PROGRESS_100,
     ],
     [0, 0, 2 * SVG_SIZE, 0]
   );
@@ -68,9 +72,9 @@ const SquidGame = () => {
     scrollYProgress,
     [
       SCROLL_PROGRESS_0,
-      SCROLL_PROGRESS_12_5,
+      SCROLL_PROGRESS_6_25,
+      SCROLL_PROGRESS_25,
       SCROLL_PROGRESS_50,
-      SCROLL_PROGRESS_100,
     ],
     [SVG_SIZE / 2, SVG_SIZE / 2, -1.5 * SVG_SIZE, -1.5 * SVG_SIZE]
   );
@@ -84,7 +88,7 @@ const SquidGame = () => {
    */
   const triangleSidesOpacity = useTransform(
     scrollYProgress,
-    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_75, SCROLL_PROGRESS_100],
+    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_37_5, SCROLL_PROGRESS_50],
     [1, 1, 0]
   );
 
@@ -93,9 +97,9 @@ const SquidGame = () => {
     scrollYProgress,
     [
       SCROLL_PROGRESS_0,
-      SCROLL_PROGRESS_33,
-      SCROLL_PROGRESS_75,
-      SCROLL_PROGRESS_100,
+      SCROLL_PROGRESS_16_67,
+      SCROLL_PROGRESS_37_5,
+      SCROLL_PROGRESS_50,
     ],
     [
       SQUID_GAME_WIDTH,
@@ -107,14 +111,14 @@ const SquidGame = () => {
 
   const triangleBaseYPosition = useTransform(
     scrollYProgress,
-    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_75, SCROLL_PROGRESS_100],
+    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_37_5, SCROLL_PROGRESS_50],
     [0, 0, -2 * SQUID_GAME_THICKNESS]
   );
 
   /***** Triangle sides animation controls *****/
   const triangleSidesYPosition = useTransform(
     scrollYProgress,
-    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_33, SCROLL_PROGRESS_100],
+    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_16_67, SCROLL_PROGRESS_50],
     [
       0,
       (1 - SQUID_GAME_TRIANGLE_SCALE_DOWN_FACTOR) * TRIANGLE_HEIGHT,
@@ -124,7 +128,7 @@ const SquidGame = () => {
 
   const triangleSidesWidth = useTransform(
     scrollYProgress,
-    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_33, SCROLL_PROGRESS_100],
+    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_16_67, SCROLL_PROGRESS_50],
     [
       SQUID_GAME_WIDTH,
       SQUID_GAME_TRIANGLE_SCALE_DOWN_FACTOR * SQUID_GAME_WIDTH,
@@ -136,9 +140,9 @@ const SquidGame = () => {
     scrollYProgress,
     [
       SCROLL_PROGRESS_0,
-      SCROLL_PROGRESS_33,
-      SCROLL_PROGRESS_75,
-      SCROLL_PROGRESS_100,
+      SCROLL_PROGRESS_16_67,
+      SCROLL_PROGRESS_37_5,
+      SCROLL_PROGRESS_50,
     ],
     [
       0,
@@ -168,34 +172,34 @@ const SquidGame = () => {
   /***** Top square side animation controls *****/
   const topSquareSideWidth = useTransform(
     scrollYProgress,
-    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_50, SCROLL_PROGRESS_100],
+    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_25, SCROLL_PROGRESS_50],
     [SQUID_GAME_WIDTH, 1.5 * SQUID_GAME_WIDTH, 0]
   );
 
   /***** Bottom square side animation controls *****/
   const bottomSquareSideWidth = useTransform(
     scrollYProgress,
-    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_50, SCROLL_PROGRESS_100],
+    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_25, SCROLL_PROGRESS_50],
     [SQUID_GAME_WIDTH, SQUID_GAME_WIDTH, 0]
   );
 
   const horizontalSideXPositionOffset = useTransform(
     scrollYProgress,
-    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_100],
+    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_50],
     [0, -SQUID_GAME_WIDTH]
   );
 
   /***** Left square side animation controls *****/
   const leftSquareSideHeight = useTransform(
     scrollYProgress,
-    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_75, SCROLL_PROGRESS_100],
+    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_37_5, SCROLL_PROGRESS_50],
     [SQUID_GAME_WIDTH, SQUID_GAME_WIDTH, 0]
   );
 
   /***** Right square side animation controls *****/
   const rightSquareSideHeight = useTransform(
     scrollYProgress,
-    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_50, SCROLL_PROGRESS_100],
+    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_25, SCROLL_PROGRESS_50],
     [SQUID_GAME_WIDTH, SQUID_GAME_WIDTH, 0]
   );
 

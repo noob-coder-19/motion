@@ -4,9 +4,13 @@ export const SQUID_GAME_TRIANGLE_SCALE_DOWN_FACTOR = 0.5;
 export const LETTERS_SCALE_DOWN_FACTOR = 0.5;
 
 export const SCROLL_PROGRESS_0 = 0;
+export const SCROLL_PROGRESS_5 = 0.05;
+export const SCROLL_PROGRESS_6_25 = 0.0625;
+export const SCROLL_PROGRESS_7_5 = 0.075;
 export const SCROLL_PROGRESS_10 = 0.1;
 export const SCROLL_PROGRESS_12_5 = 0.125;
 export const SCROLL_PROGRESS_15 = 0.15;
+export const SCROLL_PROGRESS_16_67 = 1 / 6; // 16.67%
 export const SCROLL_PROGRESS_20 = 0.2;
 export const SCROLL_PROGRESS_25 = 0.25;
 export const SCROLL_PROGRESS_30 = 0.3;
