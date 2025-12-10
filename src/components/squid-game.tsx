@@ -16,6 +16,7 @@ import {
 import LetterH from "./letters/letter-h";
 import LetterA from "./letters/letter-a";
 import LetterY from "./letters/letter-y";
+import LetterU from "./letters/letter-u";
 
 const MotionTrapezoid = motion.create(Trapezoid, { forwardMotionProps: true });
 
@@ -37,10 +38,6 @@ const SquidGame = () => {
 
   // Letter constants
   const LETTERS_WIDTH = SQUID_GAME_WIDTH * LETTERS_SCALE_DOWN_FACTOR;
-
-  // U letter
-  const U_SEMI_CIRCLE_OUTER_RADIUS = (LETTERS_WIDTH * 0.5);
-  const U_SEMI_CIRCLE_CENTERLINE_RADIUS = U_SEMI_CIRCLE_OUTER_RADIUS - SQUID_GAME_THICKNESS / 2;
 
   // S letter
   const SEMI_CIRCLE_OUTER_RADIUS = (LETTERS_WIDTH + SQUID_GAME_THICKNESS) / 4;
@@ -201,8 +198,6 @@ const SquidGame = () => {
 
   return (
     <div ref={containerRef} className="squid-game-container">
-      <h1>Squid Game</h1>
-
       {/* Squid game grid */}
       <>
         <div className="container fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -406,60 +401,7 @@ const SquidGame = () => {
           <LetterY LETTERS_WIDTH={LETTERS_WIDTH} scrollYProgress={scrollYProgress} />
 
           {/* U shape */}
-          <div
-            className="shape-u relative"
-            style={{
-              aspectRatio: "1",
-              height: `${LETTERS_WIDTH}px`,
-              outline: "1px solid red",
-            }}
-          >
-            {/* Horizontal Bar */}
-            <MotionTrapezoid
-              width={`${SQUID_GAME_THICKNESS}px`}
-              height={`${LETTERS_WIDTH * 0.5}px`}
-              angle={"0%"}
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-              }}></MotionTrapezoid>
-
-            {/* Semi Circle Outer Radius: {LETTERS_WIDTH * 0.5}px */}
-            <div className="absolute bottom-0 left-0" style={{
-              width: `${2 * U_SEMI_CIRCLE_OUTER_RADIUS}px`,
-              height: `${2 * U_SEMI_CIRCLE_OUTER_RADIUS}px`,
-            }}>
-              <svg width="100%" height="100%">
-                <circle
-                  cx={U_SEMI_CIRCLE_OUTER_RADIUS}
-                  cy={U_SEMI_CIRCLE_OUTER_RADIUS}
-                  r={U_SEMI_CIRCLE_CENTERLINE_RADIUS}
-                  stroke="white"
-                  fill="none"
-                  strokeWidth={SQUID_GAME_THICKNESS}
-                  strokeDasharray={`${Math.PI * U_SEMI_CIRCLE_CENTERLINE_RADIUS} ${Math.PI * U_SEMI_CIRCLE_CENTERLINE_RADIUS}`}
-                  strokeDashoffset={0}
-                  style={{
-                    // rotate: "90deg",
-                    transformOrigin: "center center",
-                  }}
-                />
-              </svg>
-
-            </div>
-
-            {/* Horizontal Bar */}
-            <MotionTrapezoid
-              width={`${SQUID_GAME_THICKNESS}px`}
-              height={`${LETTERS_WIDTH}px`}
-              angle={"0%"}
-              style={{
-                position: "absolute",
-                bottom: `${U_SEMI_CIRCLE_OUTER_RADIUS}px`,
-                right: 0,
-              }}></MotionTrapezoid>
-          </div>
+          <LetterU LETTERS_WIDTH={LETTERS_WIDTH} scrollYProgress={scrollYProgress} />
 
           {/* S shape */}
           <div
