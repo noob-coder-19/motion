@@ -15,6 +15,7 @@ import {
 } from "../constants";
 import LetterH from "./letters/letter-h";
 import LetterA from "./letters/letter-a";
+import LetterY from "./letters/letter-y";
 
 const MotionTrapezoid = motion.create(Trapezoid, { forwardMotionProps: true });
 
@@ -402,53 +403,7 @@ const SquidGame = () => {
           <LetterA LETTERS_WIDTH={LETTERS_WIDTH} scrollYProgress={scrollYProgress} />
 
           {/* Y shape */}
-          <div
-            className="shape-y relative"
-            style={{
-              width: `${(LETTERS_WIDTH + (4 * SQUID_GAME_THICKNESS)) / Math.sqrt(3)}px`,
-              height: `${LETTERS_WIDTH}px`,
-              outline: "1px solid red",
-            }}
-          >
-            {/* Left Horizontal Bar */}
-            <MotionTrapezoid
-              width={`${(LETTERS_WIDTH + 4 * SQUID_GAME_THICKNESS) / Math.sqrt(3)}px`}
-              height={`${SQUID_GAME_THICKNESS}px`}
-              angle={`calc(${SQUID_GAME_THICKNESS}px / sqrt(3))`}
-              style={{
-                position: "absolute",
-                transform: "rotate(60deg)",
-                transformOrigin: "bottom left",
-                left: 0,
-                top: `${-SQUID_GAME_THICKNESS}px`,
-              }}></MotionTrapezoid>
-
-            {/* Right Horizontal Bar */}
-            <MotionTrapezoid
-              width={`${(LETTERS_WIDTH + (4 * SQUID_GAME_THICKNESS)) / Math.sqrt(3)}px`}
-              height={`${SQUID_GAME_THICKNESS}px`}
-              angle={`calc(${SQUID_GAME_THICKNESS}px / sqrt(3))`}
-              style={{
-                position: "absolute",
-                transform: "rotate(-60deg)",
-                transformOrigin: "bottom right",
-                right: 0,
-                top: `${-SQUID_GAME_THICKNESS}px`,
-              }}></MotionTrapezoid>
-
-            {/* Bottom Vertical Bar */}
-            <MotionTrapezoid
-              width={`${SQUID_GAME_THICKNESS}px`}
-              height={`${LETTERS_WIDTH}px`}
-              angle={"0%"}
-              // variant="bottom"
-              style={{
-                position: "absolute",
-                bottom: `${-LETTERS_WIDTH / 2}px`,
-                left: `${(LETTERS_WIDTH + (4 * SQUID_GAME_THICKNESS)) / (2 * Math.sqrt(3)) - SQUID_GAME_THICKNESS / 2}px`,
-                width: `${SQUID_GAME_THICKNESS}px`,
-              }}></MotionTrapezoid>
-          </div>
+          <LetterY LETTERS_WIDTH={LETTERS_WIDTH} scrollYProgress={scrollYProgress} />
 
           {/* U shape */}
           <div
