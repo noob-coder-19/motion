@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+:root {
+  --color-pink-400: #f44786;
+  --color-pink-500: #ED1B76;
+}
+
+@theme {
+  --color-pink-400: var(--color-pink-400);
+  --color-pink-500: var(--color-pink-500);
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -48,11 +58,6 @@ html {
 }
 
 .squid-game-container .container {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
   display: flex;
   flex-direction: column;
   align-items: center;
