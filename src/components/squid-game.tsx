@@ -17,6 +17,7 @@ import LetterH from "./letters/letter-h";
 import LetterA from "./letters/letter-a";
 import LetterY from "./letters/letter-y";
 import LetterU from "./letters/letter-u";
+import LetterS from "./letters/letter-s";
 
 const MotionTrapezoid = motion.create(Trapezoid, { forwardMotionProps: true });
 
@@ -38,11 +39,6 @@ const SquidGame = () => {
 
   // Letter constants
   const LETTERS_WIDTH = SQUID_GAME_WIDTH * LETTERS_SCALE_DOWN_FACTOR;
-
-  // S letter
-  const SEMI_CIRCLE_OUTER_RADIUS = (LETTERS_WIDTH + SQUID_GAME_THICKNESS) / 4;
-  // const SEMI_CIRCLE_INNER_RADIUS = (LETTERS_WIDTH - SQUID_GAME_THICKNESS) / 4;
-  const SEMI_CIRCLE_CENTERLINE_RADIUS = SEMI_CIRCLE_OUTER_RADIUS - SQUID_GAME_THICKNESS / 2;
 
   const strokeDashoffsetClockwise = useTransform(
     scrollYProgress,
@@ -404,124 +400,7 @@ const SquidGame = () => {
           <LetterU LETTERS_WIDTH={LETTERS_WIDTH} scrollYProgress={scrollYProgress} />
 
           {/* S shape */}
-          <div
-            className="shape-s relative flex flex-col items-center justify-between"
-            style={{
-              aspectRatio: "1.5",
-              height: `${LETTERS_WIDTH}px`,
-              outline: "1px solid red",
-            }}
-          >
-            {/* Top Horizontal Bar */}
-            <MotionTrapezoid
-              width={`${LETTERS_WIDTH}px`}
-              height={`${SQUID_GAME_THICKNESS}px`}
-              angle={"0%"}
-              style={{
-                position: "absolute",
-                top: 0,
-                right: 0,
-                // backgroundColor: "green",
-                width: `${LETTERS_WIDTH - SEMI_CIRCLE_OUTER_RADIUS}px`,
-              }}></MotionTrapezoid>
-
-             {/* Top right semicircle */}
-             <div
-               className="relative"
-               style={{
-                 position: "absolute",
-                 top: 0,
-                 left: `${LETTERS_WIDTH * 0.5}px`,
-                 aspectRatio: "1",
-                 height: `${2 * SEMI_CIRCLE_OUTER_RADIUS}px`,
-               }}
-             >
-               <svg
-                 width={2 * SEMI_CIRCLE_OUTER_RADIUS}
-                 height={2 * SEMI_CIRCLE_OUTER_RADIUS}
-                 style={{ overflow: "visible"}}
-               >
-                 <circle
-                   cx={SEMI_CIRCLE_OUTER_RADIUS}
-                   cy={SEMI_CIRCLE_OUTER_RADIUS}
-                   r={SEMI_CIRCLE_CENTERLINE_RADIUS}
-                   stroke="white"
-                   strokeWidth={SQUID_GAME_THICKNESS}
-                   fill="none"
-                   strokeDasharray={`${Math.PI * SEMI_CIRCLE_CENTERLINE_RADIUS} ${Math.PI * SEMI_CIRCLE_CENTERLINE_RADIUS}`}
-                   strokeDashoffset={0}
-                   style={{
-                     rotate: "90deg",
-                     transformOrigin: "center center",
-                   }}
-                 />
-               </svg>
-             </div>
-
-             {/* Middle horizontal bar */}
-             <MotionTrapezoid
-              width={`${LETTERS_WIDTH}px`}
-              height={`${SQUID_GAME_THICKNESS}px`}
-              angle={"0%"}
-              style={{
-                position: "absolute",
-                top: "50%",
-                // left: `calc(50% + ${SEMI_CIRCLE_OUTER_RADIUS}px)`,
-                // left: `62.5%`,
-                left: `${LETTERS_WIDTH * 0.5 + SEMI_CIRCLE_OUTER_RADIUS}px`,
-                // right: `${SEMI_CIRCLE_OUTER_RADIUS}px`,
-                transform: `translateY(-50%)`,
-                // transform: "translate(-50%, -50%)",
-                // backgroundColor: "red",
-                width: `${LETTERS_WIDTH - 2 * SEMI_CIRCLE_OUTER_RADIUS}px`,
-              }}></MotionTrapezoid>
-
-             {/* Bottom left semicircle */}
-             <div
-               className="relative"
-               style={{
-                 position: "absolute",
-                 bottom: 0,
-                 right: 0,
-                 width: `${2 * SEMI_CIRCLE_OUTER_RADIUS}px`,
-                 height: `${2 * SEMI_CIRCLE_OUTER_RADIUS}px`,
-               }}
-             >
-               <svg
-                 width={2 * SEMI_CIRCLE_OUTER_RADIUS}
-                 height={2 * SEMI_CIRCLE_OUTER_RADIUS}
-                 style={{ overflow: "visible" }}
-               >
-                 <circle
-                   cx={SEMI_CIRCLE_OUTER_RADIUS}
-                   cy={SEMI_CIRCLE_OUTER_RADIUS}
-                   r={SEMI_CIRCLE_CENTERLINE_RADIUS}
-                   stroke="white"
-                   strokeWidth={SQUID_GAME_THICKNESS}
-                   fill="none"
-                   strokeDasharray={`${Math.PI * SEMI_CIRCLE_CENTERLINE_RADIUS} ${Math.PI * SEMI_CIRCLE_CENTERLINE_RADIUS}`}
-                   strokeDashoffset={0}
-                   style={{
-                     rotate: "-90deg",
-                     transformOrigin: "center center",
-                   }}
-                 />
-               </svg>
-             </div>
-
-             {/* Bottom Horizontal Bar */}
-             <MotionTrapezoid
-              width={`${LETTERS_WIDTH}px`}
-              height={`${SQUID_GAME_THICKNESS}px`}
-              angle={"0%"}
-              style={{
-                position: "absolute",
-                bottom: 0,
-                left: 0,
-                // backgroundColor: "blue",
-                width: `${1.5 * LETTERS_WIDTH - SEMI_CIRCLE_OUTER_RADIUS}px`,
-              }}></MotionTrapezoid>
-          </div>
+          <LetterS LETTERS_WIDTH={LETTERS_WIDTH} scrollYProgress={scrollYProgress} />
 
           {/* H shape */}
           <LetterH LETTERS_WIDTH={LETTERS_WIDTH} scrollYProgress={scrollYProgress} />
