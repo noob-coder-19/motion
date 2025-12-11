@@ -59,7 +59,6 @@ const LetterS = ({ LETTERS_WIDTH, scrollYProgress }: LetterSProps) => {
       style={{
         aspectRatio: "1.5",
         height: `${LETTERS_WIDTH}px`,
-        outline: "1px solid red",
       }}
     >
       {/* Top Horizontal Bar */}
@@ -81,7 +80,7 @@ const LetterS = ({ LETTERS_WIDTH, scrollYProgress }: LetterSProps) => {
         style={{
           position: "absolute",
           top: 0,
-          left: `${LETTERS_WIDTH * 0.5}px`,
+          left: `${LETTERS_WIDTH * 0.5 + 1}px`,
           aspectRatio: "0.5",
           height: `${2 * SEMI_CIRCLE_OUTER_RADIUS}px`,
         }}
@@ -128,7 +127,7 @@ const LetterS = ({ LETTERS_WIDTH, scrollYProgress }: LetterSProps) => {
         style={{
           position: "absolute",
           bottom: 0,
-          right: 0,
+          right: 1,
           aspectRatio: "0.5",
           height: `${2 * SEMI_CIRCLE_OUTER_RADIUS}px`,
         }}

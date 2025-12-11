@@ -41,7 +41,6 @@ const LetterA = ({ LETTERS_WIDTH, scrollYProgress }: LetterAProps) => {
       style={{
         width: `${LETTER_A_WIDTH}px`,
         height: `${LETTERS_WIDTH}px`,
-        outline: "1px solid red",
       }}
     >
       {/* Right side */}

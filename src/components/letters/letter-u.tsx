@@ -46,7 +46,6 @@ const LetterU = ({ LETTERS_WIDTH, scrollYProgress }: LetterUProps) => {
       style={{
         aspectRatio: "1",
         height: `${LETTERS_WIDTH}px`,
-        outline: "1px solid red",
       }}
     >
       {/* Horizontal Bar */}

@@ -49,7 +49,6 @@ const LetterH = ({ LETTERS_WIDTH, scrollYProgress }: LetterHProps) => {
       style={{
         width: `${LETTERS_WIDTH}px`,
         height: `${LETTERS_WIDTH}px`,
-        outline: "1px solid red",
       }}
     >
       {/* Left Vertical Bar */}
