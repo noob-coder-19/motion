@@ -224,7 +224,7 @@ const SquidGame = () => {
                   rotate: -90,
                   transformOrigin: "center center",
                 }}
-                stroke={"white"}
+                stroke={"#f1f1f1"}
                 strokeWidth={CIRCLE_STROKE_WIDTH}
                 fill="none"
               />
@@ -379,7 +379,7 @@ const SquidGame = () => {
                   rotate: 90,
                   transformOrigin: "center center",
                 }}
-                stroke={"white"}
+                stroke={"#f1f1f1"}
                 strokeWidth={CIRCLE_STROKE_WIDTH}
                 fill="none"
               />
