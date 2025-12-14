@@ -23,6 +23,7 @@ export const SCROLL_PROGRESS_50 = 0.5;
 export const SCROLL_PROGRESS_55 = 0.55;
 export const SCROLL_PROGRESS_60 = 0.6;
 export const SCROLL_PROGRESS_62_5 = 0.625;
+export const SCROLL_PROGRESS_63_75 = 0.6375;
 export const SCROLL_PROGRESS_65 = 0.65;
 export const SCROLL_PROGRESS_66 = 0.66;
 export const SCROLL_PROGRESS_70 = 0.7;

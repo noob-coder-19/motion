@@ -17,16 +17,28 @@ const LetterA = ({ LETTERS_WIDTH, scrollYProgress }: LetterAProps) => {
     [0, 0, LETTER_A_WIDTH]
   );
 
+  const rightHorizontalBarVisibility = useTransform(rightHorizontalBarWidth, (width) =>
+    width > SQUID_GAME_THICKNESS ? "visible" : "hidden"
+  );
+
   const leftHorizontalBarWidth = useTransform(
     scrollYProgress,
     [SCROLL_PROGRESS_0, SCROLL_PROGRESS_70, SCROLL_PROGRESS_80],
     [0, 0, LETTER_A_WIDTH]
   );
 
+  const leftHorizontalBarVisibility = useTransform(leftHorizontalBarWidth, (width) =>
+    width > SQUID_GAME_THICKNESS ? "visible" : "hidden"
+  );
+
   const bottomHorizontalBarWidth = useTransform(
     scrollYProgress,
     [SCROLL_PROGRESS_0, SCROLL_PROGRESS_50, SCROLL_PROGRESS_60, SCROLL_PROGRESS_80, SCROLL_PROGRESS_100],
     [0, 0, LETTER_A_WIDTH, LETTER_A_WIDTH, 0]
+  );
+
+  const bottomHorizontalBarVisibility = useTransform(bottomHorizontalBarWidth, (width) =>
+    width > SQUID_GAME_THICKNESS ? "visible" : "hidden"
   );
 
   const innerTriangleOpacity = useTransform(
@@ -56,6 +68,7 @@ const LetterA = ({ LETTERS_WIDTH, scrollYProgress }: LetterAProps) => {
           bottom: `${-SQUID_GAME_THICKNESS / 2}px`,
           left: `${SQUID_GAME_THICKNESS * (Math.sqrt(3) / 2)}px`,
           transformOrigin: "bottom left",
+          visibility: rightHorizontalBarVisibility,
         }}
       ></MotionTrapezoid>
 
@@ -72,6 +85,7 @@ const LetterA = ({ LETTERS_WIDTH, scrollYProgress }: LetterAProps) => {
           top: 0,
           left: `${LETTER_A_WIDTH / 2}px`,
           transformOrigin: "top left",
+          visibility: leftHorizontalBarVisibility,
         }}
       ></MotionTrapezoid>
 
@@ -105,6 +119,7 @@ const LetterA = ({ LETTERS_WIDTH, scrollYProgress }: LetterAProps) => {
           position: "absolute",
           bottom: 0,
           right: 0,
+          visibility: bottomHorizontalBarVisibility,
         }}
       ></MotionTrapezoid>
     </div>

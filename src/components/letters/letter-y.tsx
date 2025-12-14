@@ -1,7 +1,7 @@
 import MotionTrapezoid from "../motion-components/trapezoid";
 import {
   SCROLL_PROGRESS_50,
-  SCROLL_PROGRESS_62_5,
+  SCROLL_PROGRESS_63_75,
   SCROLL_PROGRESS_72_5,
   SCROLL_PROGRESS_87_5,
   SQUID_GAME_THICKNESS,
@@ -15,12 +15,17 @@ interface LetterYProps {
 }
 
 const LetterY = ({ LETTERS_WIDTH, scrollYProgress }: LetterYProps) => {
-  const VERTICAL_BAR_WIDTH = (LETTERS_WIDTH + 4 * SQUID_GAME_THICKNESS) / Math.sqrt(3);
+  const VERTICAL_BAR_WIDTH =
+    (LETTERS_WIDTH + 4 * SQUID_GAME_THICKNESS) / Math.sqrt(3);
 
   const horizontalBarWidth = useTransform(
     scrollYProgress,
-    [SCROLL_PROGRESS_62_5, SCROLL_PROGRESS_87_5],
+    [SCROLL_PROGRESS_63_75, SCROLL_PROGRESS_87_5],
     [0, VERTICAL_BAR_WIDTH]
+  );
+
+  const horizontalBarVisibility = useTransform(horizontalBarWidth, (width) =>
+    width > SQUID_GAME_THICKNESS ? "visible" : "hidden"
   );
 
   const bottomBarHeight = useTransform(
@@ -35,6 +40,7 @@ const LetterY = ({ LETTERS_WIDTH, scrollYProgress }: LetterYProps) => {
       style={{
         width: `${VERTICAL_BAR_WIDTH}px`,
         height: `${LETTERS_WIDTH}px`,
+        marginLeft: `-${SQUID_GAME_THICKNESS}px`,
       }}
     >
       {/* Left Horizontal Bar */}
@@ -48,7 +54,8 @@ const LetterY = ({ LETTERS_WIDTH, scrollYProgress }: LetterYProps) => {
           transform: "rotate(60deg)",
           transformOrigin: "bottom right",
           right: VERTICAL_BAR_WIDTH / 2,
-          bottom: LETTERS_WIDTH / 2 - (2 * SQUID_GAME_THICKNESS),
+          bottom: LETTERS_WIDTH / 2 - 2 * SQUID_GAME_THICKNESS,
+          visibility: horizontalBarVisibility,
         }}
       ></MotionTrapezoid>
 
@@ -63,7 +70,8 @@ const LetterY = ({ LETTERS_WIDTH, scrollYProgress }: LetterYProps) => {
           transform: "rotate(-60deg)",
           transformOrigin: "bottom left",
           left: VERTICAL_BAR_WIDTH / 2,
-        bottom: LETTERS_WIDTH / 2 - (2 * SQUID_GAME_THICKNESS),
+          bottom: LETTERS_WIDTH / 2 - 2 * SQUID_GAME_THICKNESS,
+          visibility: horizontalBarVisibility,
         }}
       ></MotionTrapezoid>
 
