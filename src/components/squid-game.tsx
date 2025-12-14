@@ -1,6 +1,5 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
-import Trapezoid from "../ui/trapezoid";
 import {
   LETTERS_SCALE_DOWN_FACTOR,
   SCROLL_PROGRESS_0,
@@ -18,8 +17,7 @@ import LetterA from "./letters/letter-a";
 import LetterY from "./letters/letter-y";
 import LetterU from "./letters/letter-u";
 import LetterS from "./letters/letter-s";
-
-const MotionTrapezoid = motion.create(Trapezoid, { forwardMotionProps: true });
+import MotionTrapezoid from "./motion-components/trapezoid";
 
 const SquidGame = () => {
   const containerRef = useRef<HTMLDivElement>(null);

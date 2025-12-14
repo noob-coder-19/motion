@@ -17,11 +17,15 @@ interface LetterSProps extends React.HTMLAttributes<HTMLDivElement> {
   scrollYProgress: MotionValue<number>;
 }
 
-const LetterS = ({ LETTERS_WIDTH, scrollYProgress }: LetterSProps) => {
+const LetterS = ({
+  LETTERS_WIDTH,
+  scrollYProgress,
+  ...props
+}: LetterSProps) => {
   const SEMI_CIRCLE_OUTER_RADIUS = (LETTERS_WIDTH + SQUID_GAME_THICKNESS) / 4;
   const SEMI_CIRCLE_CENTERLINE_RADIUS =
     SEMI_CIRCLE_OUTER_RADIUS - SQUID_GAME_THICKNESS / 2;
-    const CIRCUMFERENCE = 2 * Math.PI * SEMI_CIRCLE_CENTERLINE_RADIUS;
+  const CIRCUMFERENCE = 2 * Math.PI * SEMI_CIRCLE_CENTERLINE_RADIUS;
 
   const topHorizontalBarWidth = useTransform(
     scrollYProgress,
@@ -55,6 +59,7 @@ const LetterS = ({ LETTERS_WIDTH, scrollYProgress }: LetterSProps) => {
 
   return (
     <div
+      {...props}
       className="shape-s relative flex flex-col items-center justify-between"
       style={{
         aspectRatio: "1.5",

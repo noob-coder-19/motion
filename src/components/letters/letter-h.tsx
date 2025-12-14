@@ -16,14 +16,14 @@ interface LetterHProps extends React.HTMLAttributes<HTMLDivElement> {
   scrollYProgress: MotionValue<number>;
 }
 
-const LetterH = ({ LETTERS_WIDTH, scrollYProgress }: LetterHProps) => {
+const LetterH = ({
+  LETTERS_WIDTH,
+  scrollYProgress,
+  ...props
+}: LetterHProps) => {
   const heightOfVerticalBar = useTransform(
     scrollYProgress,
-    [
-      SCROLL_PROGRESS_0,
-      SCROLL_PROGRESS_50,
-      SCROLL_PROGRESS_87_5,
-    ],
+    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_50, SCROLL_PROGRESS_87_5],
     [0, 0, 1.5 * LETTERS_WIDTH]
   );
 
@@ -39,15 +39,21 @@ const LetterH = ({ LETTERS_WIDTH, scrollYProgress }: LetterHProps) => {
   );
   const centerFillOpacity = useTransform(
     scrollYProgress,
-    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_50, SCROLL_PROGRESS_95, SCROLL_PROGRESS_100],
-    [0,0,0,1]
+    [
+      SCROLL_PROGRESS_0,
+      SCROLL_PROGRESS_50,
+      SCROLL_PROGRESS_95,
+      SCROLL_PROGRESS_100,
+    ],
+    [0, 0, 0, 1]
   );
 
   return (
     <div
+      {...props}
       className="shape-h relative flex flex-col items-center justify-center"
       style={{
-        width: `${LETTERS_WIDTH}px`,
+        aspectRatio: "1",
         height: `${LETTERS_WIDTH}px`,
       }}
     >

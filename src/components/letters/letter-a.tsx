@@ -1,6 +1,15 @@
 import type { MotionValue } from "motion";
 import MotionTrapezoid from "../motion-components/trapezoid";
-import { SCROLL_PROGRESS_0, SCROLL_PROGRESS_100, SCROLL_PROGRESS_50, SCROLL_PROGRESS_60, SCROLL_PROGRESS_70, SCROLL_PROGRESS_80, SCROLL_PROGRESS_95, SQUID_GAME_THICKNESS } from "../../constants";
+import {
+  SCROLL_PROGRESS_0,
+  SCROLL_PROGRESS_100,
+  SCROLL_PROGRESS_50,
+  SCROLL_PROGRESS_60,
+  SCROLL_PROGRESS_70,
+  SCROLL_PROGRESS_80,
+  SCROLL_PROGRESS_95,
+  SQUID_GAME_THICKNESS,
+} from "../../constants";
 import { useTransform } from "motion/react";
 
 interface LetterAProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -8,7 +17,11 @@ interface LetterAProps extends React.HTMLAttributes<HTMLDivElement> {
   scrollYProgress: MotionValue<number>;
 }
 
-const LetterA = ({ LETTERS_WIDTH, scrollYProgress }: LetterAProps) => {
+const LetterA = ({
+  LETTERS_WIDTH,
+  scrollYProgress,
+  ...props
+}: LetterAProps) => {
   const LETTER_A_WIDTH = (2 * LETTERS_WIDTH) / Math.sqrt(3);
 
   const rightHorizontalBarWidth = useTransform(
@@ -17,8 +30,9 @@ const LetterA = ({ LETTERS_WIDTH, scrollYProgress }: LetterAProps) => {
     [0, 0, LETTER_A_WIDTH]
   );
 
-  const rightHorizontalBarVisibility = useTransform(rightHorizontalBarWidth, (width) =>
-    width > SQUID_GAME_THICKNESS ? "visible" : "hidden"
+  const rightHorizontalBarVisibility = useTransform(
+    rightHorizontalBarWidth,
+    (width) => (width > SQUID_GAME_THICKNESS ? "visible" : "hidden")
   );
 
   const leftHorizontalBarWidth = useTransform(
@@ -27,28 +41,42 @@ const LetterA = ({ LETTERS_WIDTH, scrollYProgress }: LetterAProps) => {
     [0, 0, LETTER_A_WIDTH]
   );
 
-  const leftHorizontalBarVisibility = useTransform(leftHorizontalBarWidth, (width) =>
-    width > SQUID_GAME_THICKNESS ? "visible" : "hidden"
+  const leftHorizontalBarVisibility = useTransform(
+    leftHorizontalBarWidth,
+    (width) => (width > SQUID_GAME_THICKNESS ? "visible" : "hidden")
   );
 
   const bottomHorizontalBarWidth = useTransform(
     scrollYProgress,
-    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_50, SCROLL_PROGRESS_60, SCROLL_PROGRESS_80, SCROLL_PROGRESS_100],
+    [
+      SCROLL_PROGRESS_0,
+      SCROLL_PROGRESS_50,
+      SCROLL_PROGRESS_60,
+      SCROLL_PROGRESS_80,
+      SCROLL_PROGRESS_100,
+    ],
     [0, 0, LETTER_A_WIDTH, LETTER_A_WIDTH, 0]
   );
 
-  const bottomHorizontalBarVisibility = useTransform(bottomHorizontalBarWidth, (width) =>
-    width > SQUID_GAME_THICKNESS ? "visible" : "hidden"
+  const bottomHorizontalBarVisibility = useTransform(
+    bottomHorizontalBarWidth,
+    (width) => (width > SQUID_GAME_THICKNESS ? "visible" : "hidden")
   );
 
   const innerTriangleOpacity = useTransform(
     scrollYProgress,
-    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_50, SCROLL_PROGRESS_95, SCROLL_PROGRESS_100],
+    [
+      SCROLL_PROGRESS_0,
+      SCROLL_PROGRESS_50,
+      SCROLL_PROGRESS_95,
+      SCROLL_PROGRESS_100,
+    ],
     [0, 0, 0, 1]
   );
 
   return (
     <div
+      {...props}
       className="shape-a relative"
       style={{
         width: `${LETTER_A_WIDTH}px`,

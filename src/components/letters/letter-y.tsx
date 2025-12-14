@@ -14,7 +14,11 @@ interface LetterYProps {
   scrollYProgress: MotionValue<number>;
 }
 
-const LetterY = ({ LETTERS_WIDTH, scrollYProgress }: LetterYProps) => {
+const LetterY = ({
+  LETTERS_WIDTH,
+  scrollYProgress,
+  ...props
+}: LetterYProps) => {
   const VERTICAL_BAR_WIDTH =
     (LETTERS_WIDTH + 4 * SQUID_GAME_THICKNESS) / Math.sqrt(3);
 
@@ -36,6 +40,7 @@ const LetterY = ({ LETTERS_WIDTH, scrollYProgress }: LetterYProps) => {
 
   return (
     <div
+      {...props}
       className="shape-y relative"
       style={{
         width: `${VERTICAL_BAR_WIDTH}px`,

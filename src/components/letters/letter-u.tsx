@@ -16,7 +16,11 @@ interface LetterUProps extends React.HTMLAttributes<HTMLDivElement> {
   scrollYProgress: MotionValue<number>;
 }
 
-const LetterU = ({ LETTERS_WIDTH, scrollYProgress }: LetterUProps) => {
+const LetterU = ({
+  LETTERS_WIDTH,
+  scrollYProgress,
+  ...props
+}: LetterUProps) => {
   const SEMI_CIRCLE_OUTER_RADIUS = LETTERS_WIDTH * 0.5;
   const SEMI_CIRCLE_CENTERLINE_RADIUS =
     SEMI_CIRCLE_OUTER_RADIUS - SQUID_GAME_THICKNESS / 2;
@@ -42,6 +46,7 @@ const LetterU = ({ LETTERS_WIDTH, scrollYProgress }: LetterUProps) => {
 
   return (
     <div
+      {...props}
       className="shape-u relative"
       style={{
         aspectRatio: "1",
