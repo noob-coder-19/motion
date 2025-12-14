@@ -3,13 +3,10 @@ import { useRef } from "react";
 import {
   LETTERS_SCALE_DOWN_FACTOR,
   SCROLL_PROGRESS_0,
-  SCROLL_PROGRESS_16_67,
   SCROLL_PROGRESS_25,
-  SCROLL_PROGRESS_37_5,
   SCROLL_PROGRESS_50,
   SCROLL_PROGRESS_6_25,
   SQUID_GAME_THICKNESS,
-  SQUID_GAME_TRIANGLE_SCALE_DOWN_FACTOR,
   SQUID_GAME_WIDTH,
 } from "../constants";
 import LetterH from "./letters/letter-h";
@@ -18,6 +15,8 @@ import LetterY from "./letters/letter-y";
 import LetterU from "./letters/letter-u";
 import LetterS from "./letters/letter-s";
 import MotionTrapezoid from "./motion-components/trapezoid";
+import Square from "./phase-1-components/square";
+import Triangle from "./phase-1-components/triangle";
 
 const SquidGame = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -33,7 +32,6 @@ const SquidGame = () => {
   const CIRCLE_CIRCUMFERENCE = 2 * Math.PI * CIRCLE_RADIUS;
   const SVG_SIZE = 2 * (CIRCLE_RADIUS + CIRCLE_STROKE_WIDTH / 2) + 12; // Added 12px buffer
   const CIRCLE_CENTER = SVG_SIZE / 2;
-  const TRIANGLE_HEIGHT = (Math.sqrt(3) * SQUID_GAME_WIDTH) / 2;
 
   // Letter constants
   const LETTERS_WIDTH = SQUID_GAME_WIDTH * LETTERS_SCALE_DOWN_FACTOR;
@@ -64,130 +62,6 @@ const SquidGame = () => {
       SCROLL_PROGRESS_50,
     ],
     [SVG_SIZE / 2, SVG_SIZE / 2, -1.5 * SVG_SIZE, -1.5 * SVG_SIZE]
-  );
-
-  /**
-   *
-   *
-   * Triangle animation controls
-   *
-   *
-   */
-  const triangleSidesOpacity = useTransform(
-    scrollYProgress,
-    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_37_5, SCROLL_PROGRESS_50],
-    [1, 1, 0]
-  );
-
-  /***** Triangle base animation controls *****/
-  const triangleBaseWidth = useTransform(
-    scrollYProgress,
-    [
-      SCROLL_PROGRESS_0,
-      SCROLL_PROGRESS_16_67,
-      SCROLL_PROGRESS_37_5,
-      SCROLL_PROGRESS_50,
-    ],
-    [
-      SQUID_GAME_WIDTH,
-      SQUID_GAME_WIDTH,
-      SQUID_GAME_TRIANGLE_SCALE_DOWN_FACTOR * SQUID_GAME_WIDTH,
-      SQUID_GAME_TRIANGLE_SCALE_DOWN_FACTOR * SQUID_GAME_WIDTH,
-    ]
-  );
-
-  const triangleBaseYPosition = useTransform(
-    scrollYProgress,
-    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_37_5, SCROLL_PROGRESS_50],
-    [0, 0, -2 * SQUID_GAME_THICKNESS]
-  );
-
-  /***** Triangle sides animation controls *****/
-  const triangleSidesYPosition = useTransform(
-    scrollYProgress,
-    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_16_67, SCROLL_PROGRESS_50],
-    [
-      0,
-      (1 - SQUID_GAME_TRIANGLE_SCALE_DOWN_FACTOR) * TRIANGLE_HEIGHT,
-      (1 - SQUID_GAME_TRIANGLE_SCALE_DOWN_FACTOR) * TRIANGLE_HEIGHT,
-    ]
-  );
-
-  const triangleSidesWidth = useTransform(
-    scrollYProgress,
-    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_16_67, SCROLL_PROGRESS_50],
-    [
-      SQUID_GAME_WIDTH,
-      SQUID_GAME_TRIANGLE_SCALE_DOWN_FACTOR * SQUID_GAME_WIDTH,
-      SQUID_GAME_TRIANGLE_SCALE_DOWN_FACTOR * SQUID_GAME_WIDTH,
-    ]
-  );
-
-  const triangleSideXPositionOffset = useTransform(
-    scrollYProgress,
-    [
-      SCROLL_PROGRESS_0,
-      SCROLL_PROGRESS_16_67,
-      SCROLL_PROGRESS_37_5,
-      SCROLL_PROGRESS_50,
-    ],
-    [
-      0,
-      ((1 - SQUID_GAME_TRIANGLE_SCALE_DOWN_FACTOR) * SQUID_GAME_WIDTH) / 2,
-      ((1 - SQUID_GAME_TRIANGLE_SCALE_DOWN_FACTOR) * SQUID_GAME_WIDTH) / 2,
-      ((1 - SQUID_GAME_TRIANGLE_SCALE_DOWN_FACTOR) * SQUID_GAME_WIDTH) / 2,
-    ]
-  );
-
-  const leftTriangleSideXPositionOffset = useTransform(
-    [triangleSideXPositionOffset, triangleBaseYPosition],
-    (values) => `calc(50% + ${(values[0] as number) - (values[1] as number)}px)`
-  );
-
-  const rightTriangleSideXPositionOffset = useTransform(
-    [triangleSideXPositionOffset, triangleBaseYPosition],
-    (values) => `calc(50% - ${(values[0] as number) + (values[1] as number)}px)`
-  );
-
-  /**
-   *
-   *
-   * Square animation controls
-   *
-   *
-   */
-  /***** Top square side animation controls *****/
-  const topSquareSideWidth = useTransform(
-    scrollYProgress,
-    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_25, SCROLL_PROGRESS_50],
-    [SQUID_GAME_WIDTH, 1.5 * SQUID_GAME_WIDTH, 0]
-  );
-
-  /***** Bottom square side animation controls *****/
-  const bottomSquareSideWidth = useTransform(
-    scrollYProgress,
-    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_25, SCROLL_PROGRESS_50],
-    [SQUID_GAME_WIDTH, SQUID_GAME_WIDTH, 0]
-  );
-
-  const horizontalSideXPositionOffset = useTransform(
-    scrollYProgress,
-    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_50],
-    [0, -SQUID_GAME_WIDTH]
-  );
-
-  /***** Left square side animation controls *****/
-  const leftSquareSideHeight = useTransform(
-    scrollYProgress,
-    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_37_5, SCROLL_PROGRESS_50],
-    [SQUID_GAME_WIDTH, SQUID_GAME_WIDTH, 0]
-  );
-
-  /***** Right square side animation controls *****/
-  const rightSquareSideHeight = useTransform(
-    scrollYProgress,
-    [SCROLL_PROGRESS_0, SCROLL_PROGRESS_25, SCROLL_PROGRESS_50],
-    [SQUID_GAME_WIDTH, SQUID_GAME_WIDTH, 0]
   );
 
   return (
@@ -230,123 +104,10 @@ const SquidGame = () => {
           </div>
 
           {/* Triangle */}
-          <div
-            className="triangle relative"
-            style={{
-              width: `${SQUID_GAME_WIDTH}px`,
-              height: `${TRIANGLE_HEIGHT}px`,
-              marginBottom: "1rem",
-            }}
-          >
-            {/* Bottom base */}
-            <MotionTrapezoid
-              width={`${SQUID_GAME_WIDTH}px`}
-              height={`${SQUID_GAME_THICKNESS}px`}
-              angle={`calc(${SQUID_GAME_THICKNESS}px / sqrt(3))`}
-              style={{
-                width: triangleBaseWidth,
-                position: "absolute",
-                bottom: triangleBaseYPosition,
-                opacity: triangleSidesOpacity,
-                right: 0,
-              }}
-            ></MotionTrapezoid>
-
-            {/* Right side */}
-            <MotionTrapezoid
-              width={`${SQUID_GAME_WIDTH}px`}
-              height={`${SQUID_GAME_THICKNESS}px`}
-              angle={`calc(${SQUID_GAME_THICKNESS}px / sqrt(3))`}
-              variant="bottom"
-              style={{
-                width: triangleSidesWidth,
-                transform: "rotate(-60deg)",
-                position: "absolute",
-                top: triangleSidesYPosition,
-                opacity: triangleSidesOpacity,
-                right: rightTriangleSideXPositionOffset,
-                transformOrigin: "top right",
-              }}
-            ></MotionTrapezoid>
-
-            {/* Left side */}
-            <MotionTrapezoid
-              width={`${SQUID_GAME_WIDTH}px`}
-              height={`${SQUID_GAME_THICKNESS}px`}
-              angle={`calc(${SQUID_GAME_THICKNESS}px / sqrt(3))`}
-              variant="bottom"
-              style={{
-                width: triangleSidesWidth,
-                transform: "rotate(60deg)",
-                position: "absolute",
-                top: triangleSidesYPosition,
-                opacity: triangleSidesOpacity,
-                left: leftTriangleSideXPositionOffset,
-                transformOrigin: "top left",
-              }}
-            ></MotionTrapezoid>
-          </div>
+          <Triangle scrollYProgress={scrollYProgress} />
 
           {/* square */}
-          <div
-            className="square relative"
-            style={{
-              width: `${SQUID_GAME_WIDTH}px`,
-              height: `${SQUID_GAME_WIDTH}px`,
-            }}
-          >
-            {/* Right side trapezoid */}
-            <MotionTrapezoid
-              width={`${SQUID_GAME_THICKNESS}px`}
-              height={`${SQUID_GAME_WIDTH}px`}
-              angle={"0%"}
-              style={{
-                position: "absolute",
-                bottom: 0,
-                right: 0,
-                height: rightSquareSideHeight,
-              }}
-            ></MotionTrapezoid>
-
-            {/* Bottom side trapezoid */}
-            <MotionTrapezoid
-              width={`${SQUID_GAME_WIDTH}px`}
-              height={`${SQUID_GAME_THICKNESS}px`}
-              angle={"0%"}
-              style={{
-                position: "absolute",
-                bottom: 0,
-                right: horizontalSideXPositionOffset,
-                width: bottomSquareSideWidth,
-              }}
-            ></MotionTrapezoid>
-
-            {/* Top side trapezoid */}
-            <MotionTrapezoid
-              width={`${SQUID_GAME_WIDTH}px`}
-              height={`${SQUID_GAME_THICKNESS}px`}
-              angle={"0%"}
-              style={{
-                position: "absolute",
-                top: 0,
-                right: horizontalSideXPositionOffset,
-                width: topSquareSideWidth,
-              }}
-            ></MotionTrapezoid>
-
-            {/* Left side trapezoid */}
-            <MotionTrapezoid
-              width={`${SQUID_GAME_THICKNESS}px`}
-              height={`${SQUID_GAME_WIDTH}px`}
-              angle={"0%"}
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                height: leftSquareSideHeight,
-              }}
-            ></MotionTrapezoid>
-          </div>
+          <Square scrollYProgress={scrollYProgress} />
 
           {/* circle - bottom */}
           <div
