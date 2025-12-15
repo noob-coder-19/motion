@@ -64,9 +64,24 @@ const SquidGame = () => {
     [SVG_SIZE / 2, SVG_SIZE / 2, -1.5 * SVG_SIZE, -1.5 * SVG_SIZE]
   );
 
+  const backgroundOpacity = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [1, 0.55]
+  );
+
+  const backgroundColor = useTransform(
+    backgroundOpacity,
+    (opacity) => `rgba(0, 0, 0, ${opacity})`
+  );
+
   return (
     <div ref={containerRef} className="squid-game-container">
       {/* Squid game grid */}
+      <motion.div className="flex-1" style={{
+        background: backgroundColor,
+        width: "100%",
+      }}>
       <>
         <div className="container fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
           {/* circle - top */}
@@ -165,6 +180,7 @@ const SquidGame = () => {
           <LetterH LETTERS_WIDTH={LETTERS_WIDTH} scrollYProgress={scrollYProgress} />
         </div>
       </>
+      </motion.div>
     </div>
   );
 };

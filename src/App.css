@@ -51,6 +51,8 @@ html {
   align-items: center;
   min-height: 500dvh;
   background-color: #060606;
+  background: url("/frontman.png") no-repeat center center fixed;
+  background-size: cover;
 }
 
 .squid-game-container * {
