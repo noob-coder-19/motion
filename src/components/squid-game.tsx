@@ -66,8 +66,8 @@ const SquidGame = () => {
 
   const backgroundOpacity = useTransform(
     scrollYProgress,
-    [0, 1],
-    [1, 0.55]
+    [0, 0.5, 0.75, 0.9, 1],
+    [1, 0.85, 0.75, 0.7, 0.55]
   );
 
   const backgroundColor = useTransform(
