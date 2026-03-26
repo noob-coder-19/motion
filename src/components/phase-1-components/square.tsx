@@ -1,5 +1,6 @@
-import React from "react";
-import MotionTrapezoid from "../motion-components/trapezoid";
+import type { MotionValue } from "motion";
+import { useTransform } from "motion/react";
+import type React from "react";
 import {
   SCROLL_PROGRESS_0,
   SCROLL_PROGRESS_25,
@@ -8,8 +9,7 @@ import {
   SQUID_GAME_THICKNESS,
   SQUID_GAME_WIDTH,
 } from "../../constants";
-import type { MotionValue } from "motion";
-import { useTransform } from "motion/react";
+import MotionTrapezoid from "../motion-components/trapezoid";
 
 interface SquareProps extends React.HTMLAttributes<HTMLDivElement> {
   scrollYProgress: MotionValue<number>;
@@ -61,55 +61,55 @@ const Square = ({ scrollYProgress, ...props }: SquareProps) => {
     >
       {/* Right side trapezoid */}
       <MotionTrapezoid
-        width={`${SQUID_GAME_THICKNESS}px`}
-        height={`${SQUID_GAME_WIDTH}px`}
         angle={"0%"}
+        height={`${SQUID_GAME_WIDTH}px`}
         style={{
           position: "absolute",
           bottom: 0,
           right: 0,
           height: rightSideHeight,
         }}
-      ></MotionTrapezoid>
+        width={`${SQUID_GAME_THICKNESS}px`}
+      />
 
       {/* Bottom side trapezoid */}
       <MotionTrapezoid
-        width={`${SQUID_GAME_WIDTH}px`}
-        height={`${SQUID_GAME_THICKNESS}px`}
         angle={"0%"}
+        height={`${SQUID_GAME_THICKNESS}px`}
         style={{
           position: "absolute",
           bottom: 0,
           right: horizontalSideXPositionOffset,
           width: bottomSideWidth,
         }}
-      ></MotionTrapezoid>
+        width={`${SQUID_GAME_WIDTH}px`}
+      />
 
       {/* Top side trapezoid */}
       <MotionTrapezoid
-        width={`${SQUID_GAME_WIDTH}px`}
-        height={`${SQUID_GAME_THICKNESS}px`}
         angle={"0%"}
+        height={`${SQUID_GAME_THICKNESS}px`}
         style={{
           position: "absolute",
           top: 0,
           right: horizontalSideXPositionOffset,
           width: topSideWidth,
         }}
-      ></MotionTrapezoid>
+        width={`${SQUID_GAME_WIDTH}px`}
+      />
 
       {/* Left side trapezoid */}
       <MotionTrapezoid
-        width={`${SQUID_GAME_THICKNESS}px`}
-        height={`${SQUID_GAME_WIDTH}px`}
         angle={"0%"}
+        height={`${SQUID_GAME_WIDTH}px`}
         style={{
           position: "absolute",
           top: 0,
           left: 0,
           height: leftSideHeight,
         }}
-      ></MotionTrapezoid>
+        width={`${SQUID_GAME_THICKNESS}px`}
+      />
     </div>
   );
 };
