@@ -2,11 +2,7 @@ import "./App.css";
 import SquidGame from "./components/squid-game";
 
 function App() {
-  return (
-    <>
-      <SquidGame />
-    </>
-  );
+  return <SquidGame />;
 }
 
 export default App;
