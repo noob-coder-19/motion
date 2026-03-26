@@ -1,15 +1,15 @@
 import type { MotionValue } from "motion";
+import { useTransform } from "motion/react";
 import {
   SCROLL_PROGRESS_0,
-  SCROLL_PROGRESS_100,
   SCROLL_PROGRESS_50,
   SCROLL_PROGRESS_87_5,
   SCROLL_PROGRESS_90,
   SCROLL_PROGRESS_95,
+  SCROLL_PROGRESS_100,
   SQUID_GAME_THICKNESS,
 } from "../../constants";
 import MotionTrapezoid from "../motion-components/trapezoid";
-import { useTransform } from "motion/react";
 
 interface LetterHProps extends React.HTMLAttributes<HTMLDivElement> {
   LETTERS_WIDTH: number;
@@ -59,9 +59,8 @@ const LetterH = ({
     >
       {/* Left Vertical Bar */}
       <MotionTrapezoid
-        width={`${SQUID_GAME_THICKNESS}px`}
-        height={`${1.5 * LETTERS_WIDTH}px`}
         angle={"0%"}
+        height={`${1.5 * LETTERS_WIDTH}px`}
         style={{
           position: "absolute",
           height: heightOfVerticalBar,
@@ -69,26 +68,26 @@ const LetterH = ({
           left: 0,
           width: `${SQUID_GAME_THICKNESS}px`,
         }}
-      ></MotionTrapezoid>
+        width={`${SQUID_GAME_THICKNESS}px`}
+      />
 
       {/* Center fill */}
       <MotionTrapezoid
-        width={`${LETTERS_WIDTH - 2 * SQUID_GAME_THICKNESS}px`}
-        height={`${(LETTERS_WIDTH - SQUID_GAME_THICKNESS) / 2}px`}
         angle={"0%"}
+        height={`${(LETTERS_WIDTH - SQUID_GAME_THICKNESS) / 2}px`}
         style={{
           position: "absolute",
           top: 0,
           backgroundColor: "var(--color-pink-400)",
           opacity: centerFillOpacity,
         }}
-      ></MotionTrapezoid>
+        width={`${LETTERS_WIDTH - 2 * SQUID_GAME_THICKNESS}px`}
+      />
 
       {/* Right Vertical Bar */}
       <MotionTrapezoid
-        width={`${SQUID_GAME_THICKNESS}px`}
-        height={`${1.5 * LETTERS_WIDTH}px`}
         angle={"0%"}
+        height={`${1.5 * LETTERS_WIDTH}px`}
         style={{
           position: "absolute",
           height: heightOfVerticalBar,
@@ -96,21 +95,22 @@ const LetterH = ({
           right: 0,
           width: `${SQUID_GAME_THICKNESS}px`,
         }}
-      ></MotionTrapezoid>
+        width={`${SQUID_GAME_THICKNESS}px`}
+      />
 
       {/* Centre horizontal bar */}
       <MotionTrapezoid
-        width={`${LETTERS_WIDTH}px`}
-        height={`${SQUID_GAME_THICKNESS}px`}
         angle={"0%"}
+        height={`${SQUID_GAME_THICKNESS}px`}
         style={{
           position: "absolute",
-          top: `50%`,
+          top: "50%",
           left: 0,
-          transform: `translateY(-50%)`,
+          transform: "translateY(-50%)",
           width: widthOfHorizontalBar,
         }}
-      ></MotionTrapezoid>
+        width={`${LETTERS_WIDTH}px`}
+      />
     </div>
   );
 };

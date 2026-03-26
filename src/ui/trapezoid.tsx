@@ -1,11 +1,11 @@
 interface TrapezoidProps {
-  width?: number | string;
-  height?: number | string;
   angle?: number | string;
   color?: string;
+  height?: number | string;
+  ref?: React.RefObject<HTMLDivElement>;
   style?: React.CSSProperties;
   variant?: "top" | "bottom" | "left" | "right";
-  ref?: React.RefObject<HTMLDivElement>;
+  width?: number | string;
 }
 
 const Trapezoid = ({
@@ -38,7 +38,7 @@ const Trapezoid = ({
         clipPath,
         ...style,
       }}
-    ></div>
+    />
   );
 };
 

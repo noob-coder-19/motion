@@ -1,15 +1,15 @@
 import type { MotionValue } from "motion";
-import React from "react";
+import { motion, useTransform } from "motion/react";
+import type React from "react";
 import {
   SCROLL_PROGRESS_0,
-  SCROLL_PROGRESS_100,
   SCROLL_PROGRESS_50,
   SCROLL_PROGRESS_60,
   SCROLL_PROGRESS_85,
+  SCROLL_PROGRESS_100,
   SQUID_GAME_THICKNESS,
 } from "../../constants";
 import MotionTrapezoid from "../motion-components/trapezoid";
-import { motion, useTransform } from "motion/react";
 
 interface LetterUProps extends React.HTMLAttributes<HTMLDivElement> {
   LETTERS_WIDTH: number;
@@ -55,16 +55,16 @@ const LetterU = ({
     >
       {/* Horizontal Bar */}
       <MotionTrapezoid
-        width={`${SQUID_GAME_THICKNESS}px`}
-        height={`${LETTERS_WIDTH * 0.5}px`}
         angle={"0%"}
+        height={`${LETTERS_WIDTH * 0.5}px`}
         style={{
           position: "absolute",
           height: leftHorizontalBarHeight,
           top: 0,
           left: 0,
         }}
-      ></MotionTrapezoid>
+        width={`${SQUID_GAME_THICKNESS}px`}
+      />
 
       {/* Semi Circle Outer Radius: {LETTERS_WIDTH * 0.5}px */}
       <div
@@ -74,13 +74,13 @@ const LetterU = ({
           height: `${SEMI_CIRCLE_OUTER_RADIUS}px`,
         }}
       >
-        <svg width="100%" height="100%">
+        <svg aria-label="Semi Circle" height="100%" width="100%">
           <motion.circle
             cx={SEMI_CIRCLE_OUTER_RADIUS}
             cy={0}
+            fill="none"
             r={SEMI_CIRCLE_CENTERLINE_RADIUS}
             stroke="#f1f1f1"
-            fill="none"
             strokeWidth={SQUID_GAME_THICKNESS}
             style={{
               strokeDasharray: SEMI_CIRCLE_CIRCUMFERENCE,
@@ -93,16 +93,16 @@ const LetterU = ({
 
       {/* Horizontal Bar */}
       <MotionTrapezoid
-        width={`${SQUID_GAME_THICKNESS}px`}
-        height={`${LETTERS_WIDTH}px`}
         angle={"0%"}
+        height={`${LETTERS_WIDTH}px`}
         style={{
           position: "absolute",
           height: rightHorizontalBarHeight,
           bottom: `${SEMI_CIRCLE_OUTER_RADIUS}px`,
           right: 0,
         }}
-      ></MotionTrapezoid>
+        width={`${SQUID_GAME_THICKNESS}px`}
+      />
     </div>
   );
 };

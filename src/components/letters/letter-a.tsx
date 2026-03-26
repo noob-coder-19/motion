@@ -1,16 +1,16 @@
 import type { MotionValue } from "motion";
-import MotionTrapezoid from "../motion-components/trapezoid";
+import { useTransform } from "motion/react";
 import {
   SCROLL_PROGRESS_0,
-  SCROLL_PROGRESS_100,
   SCROLL_PROGRESS_50,
   SCROLL_PROGRESS_60,
   SCROLL_PROGRESS_70,
   SCROLL_PROGRESS_80,
   SCROLL_PROGRESS_95,
+  SCROLL_PROGRESS_100,
   SQUID_GAME_THICKNESS,
 } from "../../constants";
-import { useTransform } from "motion/react";
+import MotionTrapezoid from "../motion-components/trapezoid";
 
 interface LetterAProps extends React.HTMLAttributes<HTMLDivElement> {
   LETTERS_WIDTH: number;
@@ -85,10 +85,8 @@ const LetterA = ({
     >
       {/* Right side */}
       <MotionTrapezoid
-        width={`${LETTER_A_WIDTH}px`}
-        height={`${SQUID_GAME_THICKNESS}px`}
         angle={`calc(${SQUID_GAME_THICKNESS}px / sqrt(3))`}
-        variant="bottom"
+        height={`${SQUID_GAME_THICKNESS}px`}
         style={{
           width: rightHorizontalBarWidth,
           transform: "rotate(-60deg)",
@@ -98,14 +96,14 @@ const LetterA = ({
           transformOrigin: "bottom left",
           visibility: rightHorizontalBarVisibility,
         }}
-      ></MotionTrapezoid>
+        variant="bottom"
+        width={`${LETTER_A_WIDTH}px`}
+      />
 
       {/* Left side */}
       <MotionTrapezoid
-        width={`${LETTER_A_WIDTH}px`}
-        height={`${SQUID_GAME_THICKNESS}px`}
         angle={`calc(${SQUID_GAME_THICKNESS}px / sqrt(3))`}
-        variant="bottom"
+        height={`${SQUID_GAME_THICKNESS}px`}
         style={{
           width: leftHorizontalBarWidth,
           transform: "rotate(60deg)",
@@ -115,15 +113,14 @@ const LetterA = ({
           transformOrigin: "top left",
           visibility: leftHorizontalBarVisibility,
         }}
-      ></MotionTrapezoid>
+        variant="bottom"
+        width={`${LETTER_A_WIDTH}px`}
+      />
 
       {/* Inner triangle */}
       <MotionTrapezoid
-        width={`${
-          LETTER_A_WIDTH - (4 * SQUID_GAME_THICKNESS) / Math.sqrt(3)
-        }px`}
-        height={`${LETTERS_WIDTH - 2 * SQUID_GAME_THICKNESS}px`}
         angle={`calc(${LETTERS_WIDTH - 2 * SQUID_GAME_THICKNESS}px / sqrt(3))`}
+        height={`${LETTERS_WIDTH - 2 * SQUID_GAME_THICKNESS}px`}
         style={{
           width: `${
             LETTER_A_WIDTH - (4 * SQUID_GAME_THICKNESS) / Math.sqrt(3)
@@ -135,13 +132,15 @@ const LetterA = ({
           transformOrigin: "top left",
           opacity: innerTriangleOpacity,
         }}
-      ></MotionTrapezoid>
+        width={`${
+          LETTER_A_WIDTH - (4 * SQUID_GAME_THICKNESS) / Math.sqrt(3)
+        }px`}
+      />
 
       {/* Bottom Horizontal Bar (optional) -- this will disappear when the A shape is completed */}
       <MotionTrapezoid
-        width={`${LETTER_A_WIDTH}px`}
-        height={`${SQUID_GAME_THICKNESS}px`}
         angle={`calc(${SQUID_GAME_THICKNESS}px / sqrt(3))`}
+        height={`${SQUID_GAME_THICKNESS}px`}
         style={{
           width: bottomHorizontalBarWidth,
           position: "absolute",
@@ -149,7 +148,8 @@ const LetterA = ({
           right: 0,
           visibility: bottomHorizontalBarVisibility,
         }}
-      ></MotionTrapezoid>
+        width={`${LETTER_A_WIDTH}px`}
+      />
     </div>
   );
 };

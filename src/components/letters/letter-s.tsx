@@ -1,16 +1,16 @@
 import type { MotionValue } from "motion";
-import React from "react";
-import MotionTrapezoid from "../motion-components/trapezoid";
+import { motion, useTransform } from "motion/react";
+import type React from "react";
 import {
-  SCROLL_PROGRESS_100,
   SCROLL_PROGRESS_50,
   SCROLL_PROGRESS_60,
   SCROLL_PROGRESS_70,
   SCROLL_PROGRESS_75,
   SCROLL_PROGRESS_85,
+  SCROLL_PROGRESS_100,
   SQUID_GAME_THICKNESS,
 } from "../../constants";
-import { useTransform, motion } from "motion/react";
+import MotionTrapezoid from "../motion-components/trapezoid";
 
 interface LetterSProps extends React.HTMLAttributes<HTMLDivElement> {
   LETTERS_WIDTH: number;
@@ -68,16 +68,16 @@ const LetterS = ({
     >
       {/* Top Horizontal Bar */}
       <MotionTrapezoid
-        width={`${LETTERS_WIDTH}px`}
-        height={`${SQUID_GAME_THICKNESS}px`}
         angle={"0%"}
+        height={`${SQUID_GAME_THICKNESS}px`}
         style={{
           position: "absolute",
           top: 0,
           right: 0,
           width: topHorizontalBarWidth,
         }}
-      ></MotionTrapezoid>
+        width={`${LETTERS_WIDTH}px`}
+      />
 
       {/* Top right semicircle */}
       <div
@@ -91,17 +91,18 @@ const LetterS = ({
         }}
       >
         <svg
-          width={SEMI_CIRCLE_OUTER_RADIUS}
+          aria-label="Semi Circle"
           height={2 * SEMI_CIRCLE_OUTER_RADIUS}
           style={{ overflow: "hidden" }}
+          width={SEMI_CIRCLE_OUTER_RADIUS}
         >
           <motion.circle
             cx={SEMI_CIRCLE_OUTER_RADIUS}
             cy={SEMI_CIRCLE_OUTER_RADIUS}
+            fill="none"
             r={SEMI_CIRCLE_CENTERLINE_RADIUS}
             stroke="#f1f1f1"
             strokeWidth={SQUID_GAME_THICKNESS}
-            fill="none"
             style={{
               rotate: "90deg",
               strokeDasharray: CIRCUMFERENCE / 2,
@@ -114,17 +115,17 @@ const LetterS = ({
 
       {/* Middle horizontal bar */}
       <MotionTrapezoid
-        width={`${LETTERS_WIDTH}px`}
-        height={`${SQUID_GAME_THICKNESS}px`}
         angle={"0%"}
+        height={`${SQUID_GAME_THICKNESS}px`}
         style={{
           position: "absolute",
           top: "50%",
           left: `${LETTERS_WIDTH * 0.5 + SEMI_CIRCLE_OUTER_RADIUS}px`,
-          transform: `translateY(-50%)`,
+          transform: "translateY(-50%)",
           width: middleHorizontalBarWidth,
         }}
-      ></MotionTrapezoid>
+        width={`${LETTERS_WIDTH}px`}
+      />
 
       {/* Bottom left semicircle */}
       <div
@@ -138,17 +139,18 @@ const LetterS = ({
         }}
       >
         <svg
-          width={SEMI_CIRCLE_OUTER_RADIUS}
+          aria-label="Semi Circle"
           height={2 * SEMI_CIRCLE_OUTER_RADIUS}
           style={{ overflow: "hidden" }}
+          width={SEMI_CIRCLE_OUTER_RADIUS}
         >
           <motion.circle
             cx={0}
             cy={SEMI_CIRCLE_OUTER_RADIUS}
+            fill="none"
             r={SEMI_CIRCLE_CENTERLINE_RADIUS}
             stroke="#f1f1f1"
             strokeWidth={SQUID_GAME_THICKNESS}
-            fill="none"
             style={{
               rotate: "-90deg",
               strokeDasharray: CIRCUMFERENCE / 2,
@@ -161,16 +163,16 @@ const LetterS = ({
 
       {/* Bottom Horizontal Bar */}
       <MotionTrapezoid
-        width={`${LETTERS_WIDTH}px`}
-        height={`${SQUID_GAME_THICKNESS}px`}
         angle={"0%"}
+        height={`${SQUID_GAME_THICKNESS}px`}
         style={{
           position: "absolute",
           bottom: 0,
           right: `${SEMI_CIRCLE_OUTER_RADIUS}px`,
           width: bottomHorizontalBarWidth,
         }}
-      ></MotionTrapezoid>
+        width={`${LETTERS_WIDTH}px`}
+      />
     </div>
   );
 };

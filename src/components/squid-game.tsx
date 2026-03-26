@@ -3,17 +3,17 @@ import { useRef } from "react";
 import {
   LETTERS_SCALE_DOWN_FACTOR,
   SCROLL_PROGRESS_0,
+  SCROLL_PROGRESS_6_25,
   SCROLL_PROGRESS_25,
   SCROLL_PROGRESS_50,
-  SCROLL_PROGRESS_6_25,
   SQUID_GAME_THICKNESS,
   SQUID_GAME_WIDTH,
 } from "../constants";
-import LetterH from "./letters/letter-h";
 import LetterA from "./letters/letter-a";
-import LetterY from "./letters/letter-y";
-import LetterU from "./letters/letter-u";
+import LetterH from "./letters/letter-h";
 import LetterS from "./letters/letter-s";
+import LetterU from "./letters/letter-u";
+import LetterY from "./letters/letter-y";
 import MotionTrapezoid from "./motion-components/trapezoid";
 import Square from "./phase-1-components/square";
 import Triangle from "./phase-1-components/triangle";
@@ -76,44 +76,46 @@ const SquidGame = () => {
   );
 
   return (
-    <div ref={containerRef} className="squid-game-container">
+    <div className="squid-game-container" ref={containerRef}>
       {/* Squid game grid */}
-      <motion.div className="flex-1" style={{
-        background: backgroundColor,
-        width: "100%",
-      }}>
-      <>
-        <div className="container fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+      <motion.div
+        className="flex-1"
+        style={{
+          background: backgroundColor,
+          width: "100%",
+        }}
+      >
+        <div className="container fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform">
           {/* circle - top */}
           <div
             className="circle-top relative flex flex-col items-center justify-center"
             style={{ marginBottom: `-${CIRCLE_CENTER}px` }}
           >
             <MotionTrapezoid
-              width={`${SQUID_GAME_THICKNESS}px`}
-              height={`${SQUID_GAME_THICKNESS}px`}
               angle={"0%"}
+              height={`${SQUID_GAME_THICKNESS}px`}
               style={{
                 width: circleTrapezoidWidth,
                 position: "absolute",
                 top: `${SQUID_GAME_THICKNESS / 2}px`,
                 right: circleTrapezoidXPosition,
               }}
-            ></MotionTrapezoid>
-            <svg width={SVG_SIZE} height={SVG_SIZE}>
+              width={`${SQUID_GAME_THICKNESS}px`}
+            />
+            <svg aria-label="Circle" height={SVG_SIZE} width={SVG_SIZE}>
               <motion.circle
                 cx={CIRCLE_CENTER}
                 cy={CIRCLE_CENTER}
+                fill="none"
                 r={CIRCLE_RADIUS}
+                stroke={"#f1f1f1"}
+                strokeWidth={CIRCLE_STROKE_WIDTH}
                 style={{
                   strokeDasharray: CIRCLE_CIRCUMFERENCE,
                   strokeDashoffset: strokeDashoffsetClockwise,
                   rotate: -90,
                   transformOrigin: "center center",
                 }}
-                stroke={"#f1f1f1"}
-                strokeWidth={CIRCLE_STROKE_WIDTH}
-                fill="none"
               />
             </svg>
           </div>
@@ -132,54 +134,71 @@ const SquidGame = () => {
             }}
           >
             <MotionTrapezoid
-              width={`${SQUID_GAME_THICKNESS}px`}
-              height={`${SQUID_GAME_THICKNESS}px`}
               angle={"0%"}
+              height={`${SQUID_GAME_THICKNESS}px`}
               style={{
                 width: circleTrapezoidWidth,
                 position: "absolute",
                 bottom: `${SQUID_GAME_THICKNESS / 2}px`,
                 left: circleTrapezoidXPosition,
               }}
-            ></MotionTrapezoid>
-            <svg width={SVG_SIZE} height={SVG_SIZE}>
+              width={`${SQUID_GAME_THICKNESS}px`}
+            />
+            <svg aria-label="Circle" height={SVG_SIZE} width={SVG_SIZE}>
               <motion.circle
                 cx={CIRCLE_CENTER}
                 cy={CIRCLE_CENTER}
+                fill="none"
                 r={CIRCLE_RADIUS}
+                stroke={"#f1f1f1"}
+                strokeWidth={CIRCLE_STROKE_WIDTH}
                 style={{
                   strokeDasharray: CIRCLE_CIRCUMFERENCE,
                   strokeDashoffset: strokeDashoffsetClockwise,
                   rotate: 90,
                   transformOrigin: "center center",
                 }}
-                stroke={"#f1f1f1"}
-                strokeWidth={CIRCLE_STROKE_WIDTH}
-                fill="none"
               />
             </svg>
           </div>
         </div>
 
-        <div className="flex items-center justify-center fixed top-1/2 left-1/2 gap-0.5 transform -translate-x-1/2 -translate-y-1/2" style={{
-          gap: `${SQUID_GAME_THICKNESS}px`,
-        }}>
+        <div
+          className="fixed top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 transform items-center justify-center gap-0.5"
+          style={{
+            gap: `${SQUID_GAME_THICKNESS}px`,
+          }}
+        >
           {/* A shape */}
-          <LetterA LETTERS_WIDTH={LETTERS_WIDTH} scrollYProgress={scrollYProgress} />
+          <LetterA
+            LETTERS_WIDTH={LETTERS_WIDTH}
+            scrollYProgress={scrollYProgress}
+          />
 
           {/* Y shape */}
-          <LetterY LETTERS_WIDTH={LETTERS_WIDTH} scrollYProgress={scrollYProgress} />
+          <LetterY
+            LETTERS_WIDTH={LETTERS_WIDTH}
+            scrollYProgress={scrollYProgress}
+          />
 
           {/* U shape */}
-          <LetterU LETTERS_WIDTH={LETTERS_WIDTH} scrollYProgress={scrollYProgress} />
+          <LetterU
+            LETTERS_WIDTH={LETTERS_WIDTH}
+            scrollYProgress={scrollYProgress}
+          />
 
           {/* S shape */}
-          <LetterS LETTERS_WIDTH={LETTERS_WIDTH} scrollYProgress={scrollYProgress} />
+          <LetterS
+            LETTERS_WIDTH={LETTERS_WIDTH}
+            scrollYProgress={scrollYProgress}
+          />
 
           {/* H shape */}
-          <LetterH LETTERS_WIDTH={LETTERS_WIDTH} scrollYProgress={scrollYProgress} />
+          <LetterH
+            LETTERS_WIDTH={LETTERS_WIDTH}
+            scrollYProgress={scrollYProgress}
+          />
         </div>
-      </>
       </motion.div>
     </div>
   );

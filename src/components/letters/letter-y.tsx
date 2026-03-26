@@ -1,4 +1,5 @@
-import MotionTrapezoid from "../motion-components/trapezoid";
+import type { MotionValue } from "motion";
+import { useTransform } from "motion/react";
 import {
   SCROLL_PROGRESS_50,
   SCROLL_PROGRESS_63_75,
@@ -6,8 +7,7 @@ import {
   SCROLL_PROGRESS_87_5,
   SQUID_GAME_THICKNESS,
 } from "../../constants";
-import type { MotionValue } from "motion";
-import { useTransform } from "motion/react";
+import MotionTrapezoid from "../motion-components/trapezoid";
 
 interface LetterYProps {
   LETTERS_WIDTH: number;
@@ -50,9 +50,8 @@ const LetterY = ({
     >
       {/* Left Horizontal Bar */}
       <MotionTrapezoid
-        width={`${VERTICAL_BAR_WIDTH}px`}
-        height={`${SQUID_GAME_THICKNESS}px`}
         angle={`calc(${SQUID_GAME_THICKNESS}px / sqrt(3))`}
+        height={`${SQUID_GAME_THICKNESS}px`}
         style={{
           position: "absolute",
           width: horizontalBarWidth,
@@ -62,13 +61,13 @@ const LetterY = ({
           bottom: LETTERS_WIDTH / 2 - 2 * SQUID_GAME_THICKNESS,
           visibility: horizontalBarVisibility,
         }}
-      ></MotionTrapezoid>
+        width={`${VERTICAL_BAR_WIDTH}px`}
+      />
 
       {/* Right Horizontal Bar */}
       <MotionTrapezoid
-        width={`${VERTICAL_BAR_WIDTH}px`}
-        height={`${SQUID_GAME_THICKNESS}px`}
         angle={`calc(${SQUID_GAME_THICKNESS}px / sqrt(3))`}
+        height={`${SQUID_GAME_THICKNESS}px`}
         style={{
           position: "absolute",
           width: horizontalBarWidth,
@@ -78,13 +77,13 @@ const LetterY = ({
           bottom: LETTERS_WIDTH / 2 - 2 * SQUID_GAME_THICKNESS,
           visibility: horizontalBarVisibility,
         }}
-      ></MotionTrapezoid>
+        width={`${VERTICAL_BAR_WIDTH}px`}
+      />
 
       {/* Bottom Vertical Bar */}
       <MotionTrapezoid
-        width={`${SQUID_GAME_THICKNESS}px`}
-        height={`${LETTERS_WIDTH}px`}
         angle={"0%"}
+        height={`${LETTERS_WIDTH}px`}
         style={{
           position: "absolute",
           bottom: `${-LETTERS_WIDTH / 2}px`,
@@ -92,7 +91,8 @@ const LetterY = ({
           height: bottomBarHeight,
           width: `${SQUID_GAME_THICKNESS}px`,
         }}
-      ></MotionTrapezoid>
+        width={`${SQUID_GAME_THICKNESS}px`}
+      />
     </div>
   );
 };
