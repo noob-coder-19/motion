@@ -1,6 +1,6 @@
 import type { MotionValue } from "motion";
-import React from "react";
-import MotionTrapezoid from "../motion-components/trapezoid";
+import { useTransform } from "motion/react";
+import type React from "react";
 import {
   SCROLL_PROGRESS_0,
   SCROLL_PROGRESS_16_67,
@@ -10,7 +10,7 @@ import {
   SQUID_GAME_TRIANGLE_SCALE_DOWN_FACTOR,
   SQUID_GAME_WIDTH,
 } from "../../constants";
-import { useTransform } from "motion/react";
+import MotionTrapezoid from "../motion-components/trapezoid";
 
 interface TriangleProps extends React.HTMLAttributes<HTMLDivElement> {
   scrollYProgress: MotionValue<number>;
@@ -105,9 +105,8 @@ const Triangle = ({ scrollYProgress, ...props }: TriangleProps) => {
     >
       {/* Bottom base */}
       <MotionTrapezoid
-        width={`${SQUID_GAME_WIDTH}px`}
-        height={`${SQUID_GAME_THICKNESS}px`}
         angle={`${SQUID_GAME_THICKNESS / Math.sqrt(3)}px`}
+        height={`${SQUID_GAME_THICKNESS}px`}
         style={{
           width: baseWidth,
           position: "absolute",
@@ -115,14 +114,13 @@ const Triangle = ({ scrollYProgress, ...props }: TriangleProps) => {
           opacity: sideOpacity,
           right: 0,
         }}
-      ></MotionTrapezoid>
+        width={`${SQUID_GAME_WIDTH}px`}
+      />
 
       {/* Right side */}
       <MotionTrapezoid
-        width={`${SQUID_GAME_WIDTH}px`}
-        height={`${SQUID_GAME_THICKNESS}px`}
         angle={`${SQUID_GAME_THICKNESS / Math.sqrt(3)}px`}
-        variant="bottom"
+        height={`${SQUID_GAME_THICKNESS}px`}
         style={{
           width: sideWidth,
           transform: "rotate(-60deg)",
@@ -132,14 +130,14 @@ const Triangle = ({ scrollYProgress, ...props }: TriangleProps) => {
           right: rightSideXPositionOffset,
           transformOrigin: "top right",
         }}
-      ></MotionTrapezoid>
+        variant="bottom"
+        width={`${SQUID_GAME_WIDTH}px`}
+      />
 
       {/* Left side */}
       <MotionTrapezoid
-        width={`${SQUID_GAME_WIDTH}px`}
-        height={`${SQUID_GAME_THICKNESS}px`}
         angle={`${SQUID_GAME_THICKNESS / Math.sqrt(3)}px`}
-        variant="bottom"
+        height={`${SQUID_GAME_THICKNESS}px`}
         style={{
           width: sideWidth,
           transform: "rotate(60deg)",
@@ -149,7 +147,9 @@ const Triangle = ({ scrollYProgress, ...props }: TriangleProps) => {
           left: leftSideXPositionOffset,
           transformOrigin: "top left",
         }}
-      ></MotionTrapezoid>
+        variant="bottom"
+        width={`${SQUID_GAME_WIDTH}px`}
+      />
     </div>
   );
 };

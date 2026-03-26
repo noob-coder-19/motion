@@ -2,7 +2,7 @@
 
 :root {
   --color-pink-400: #f44786;
-  --color-pink-500: #ED1B76;
+  --color-pink-500: #ed1b76;
 }
 
 @theme {
@@ -15,21 +15,21 @@ html {
 }
 
 #root {
-  margin: 0;
   padding: 0;
+  margin: 0;
   text-align: center;
 }
 
 .box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 500px;
   height: 500px;
-  border-radius: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(142, 159, 255);
 
   margin: 5rem;
+  background-color: rgb(142, 159, 255);
+  border-radius: 50px;
 }
 
 .block {
@@ -37,21 +37,20 @@ html {
 }
 
 .h1 {
+  display: block;
   font-size: 100px;
   font-weight: 600;
   color: rgb(240, 168, 67);
-  display: block;
 }
 
 .squid-game-container {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   min-height: 500dvh;
-  background-color: #060606;
-  background: url("/frontman.png") no-repeat center center fixed;
+  background: #060606 url("/frontman.png") no-repeat center center fixed;
   background-size: cover;
 }
 
@@ -67,8 +66,8 @@ html {
 }
 
 .squid-game-container .container .line {
-  height: 8px;
   width: 100%;
+  height: 8px;
   background-color: #f1f1f1;
 }
 
@@ -79,7 +78,7 @@ html {
 }
 
 .squid-game-container .container .horizontal-line {
-  height: 8px;
   width: 100%;
+  height: 8px;
   background-color: #f1f1f1;
 }
