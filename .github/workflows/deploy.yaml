@@ -5,18 +5,23 @@ on:
     types:
       - closed
     branches:
-      - master
-  push:
-    branches:
-      - master
+      - main
 
 jobs:
   deploy:
-    if: ${{ github.event.pull_request.merged == true && (startsWith(github.event.pull_request.head.ref, 'release/') || startsWith(github.event.pull_request.head.ref, 'hotfix/')) }}
+    # Only deploy when a PR into main was merged from release/* or hotfix/*.
+    # Push events do not have pull_request payload; direct pushes to main are skipped
+    # unless you add an explicit push-only branch below.
+    if: |
+      github.event_name == 'pull_request' &&
+      github.event.pull_request.merged == true &&
+      github.event.pull_request.base.ref == 'main' &&
+      (startsWith(github.event.pull_request.head.ref, 'release/') ||
+       startsWith(github.event.pull_request.head.ref, 'hotfix/'))
     runs-on: ubuntu-latest
-
-  steps:
+    steps:
       - uses: actions/checkout@v4
+
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
@@ -29,7 +34,7 @@ jobs:
           cache: "pnpm"
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: Build
         run: pnpm build
