@@ -86,24 +86,3 @@ html {
   height: 8px;
   background-color: var(--color-white-100);
 }
-
-.mouse-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  width: 100vw;
-  height: 100vh;
-  cursor: none;
-}
-
-.mouse {
-  position: fixed;
-  width: var(--cursor-size);
-  height: var(--cursor-size);
-  background-color: var(--color-white-100);
-  mask-image: url("/mask.svg");
-  mask-repeat: no-repeat;
-  mask-position: center;
-  mask-size: cover;
-}

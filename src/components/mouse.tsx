@@ -1,7 +1,7 @@
 import { motion, useMotionValue, useSpring } from "motion/react";
 import { useEffect } from "react";
 
-const CURSOR_SIZE = 20;
+const CURSOR_SIZE = 16;
 
 const Mouse = () => {
   const mouseX = useMotionValue(-100);
