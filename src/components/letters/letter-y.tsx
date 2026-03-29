@@ -6,7 +6,7 @@ import {
   SCROLL_PROGRESS_72_5,
   SCROLL_PROGRESS_87_5,
 } from "../../constants";
-import { useSquidGameDimensions } from "../../hooks/use-squid-game-dimentions";
+import { useSquidGameDimensions } from "../../hooks/use-squid-game-dimensions";
 import MotionTrapezoid from "../motion-components/trapezoid";
 
 interface LetterYProps {

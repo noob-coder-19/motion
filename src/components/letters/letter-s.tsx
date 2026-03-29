@@ -9,7 +9,7 @@ import {
   SCROLL_PROGRESS_85,
   SCROLL_PROGRESS_100,
 } from "../../constants";
-import { useSquidGameDimensions } from "../../hooks/use-squid-game-dimentions";
+import { useSquidGameDimensions } from "../../hooks/use-squid-game-dimensions";
 import MotionTrapezoid from "../motion-components/trapezoid";
 
 interface LetterSProps extends React.HTMLAttributes<HTMLDivElement> {

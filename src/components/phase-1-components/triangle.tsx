@@ -8,7 +8,7 @@ import {
   SCROLL_PROGRESS_50,
   SQUID_GAME_TRIANGLE_SCALE_DOWN_FACTOR,
 } from "../../constants";
-import { useSquidGameDimensions } from "../../hooks/use-squid-game-dimentions";
+import { useSquidGameDimensions } from "../../hooks/use-squid-game-dimensions";
 import MotionTrapezoid from "../motion-components/trapezoid";
 
 interface TriangleProps extends React.HTMLAttributes<HTMLDivElement> {

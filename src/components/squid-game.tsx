@@ -10,7 +10,7 @@ import {
   SCROLL_PROGRESS_90,
   SCROLL_PROGRESS_100,
 } from "../constants";
-import { useSquidGameDimensions } from "../hooks/use-squid-game-dimentions";
+import { useSquidGameDimensions } from "../hooks/use-squid-game-dimensions";
 import LetterA from "./letters/letter-a";
 import LetterH from "./letters/letter-h";
 import LetterS from "./letters/letter-s";

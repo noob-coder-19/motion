@@ -7,7 +7,7 @@ import {
   SCROLL_PROGRESS_37_5,
   SCROLL_PROGRESS_50,
 } from "../../constants";
-import { useSquidGameDimensions } from "../../hooks/use-squid-game-dimentions";
+import { useSquidGameDimensions } from "../../hooks/use-squid-game-dimensions";
 import MotionTrapezoid from "../motion-components/trapezoid";
 
 interface SquareProps extends React.HTMLAttributes<HTMLDivElement> {
