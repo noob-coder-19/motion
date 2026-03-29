@@ -6,6 +6,9 @@ import {
   SCROLL_PROGRESS_6_25,
   SCROLL_PROGRESS_25,
   SCROLL_PROGRESS_50,
+  SCROLL_PROGRESS_75,
+  SCROLL_PROGRESS_90,
+  SCROLL_PROGRESS_100,
   SQUID_GAME_THICKNESS,
   SQUID_GAME_WIDTH,
 } from "../constants";
@@ -65,7 +68,13 @@ const SquidGame = () => {
 
   const backgroundOpacity = useTransform(
     scrollYProgress,
-    [0, 0.5, 0.75, 0.9, 1],
+    [
+      SCROLL_PROGRESS_0,
+      SCROLL_PROGRESS_50,
+      SCROLL_PROGRESS_75,
+      SCROLL_PROGRESS_90,
+      SCROLL_PROGRESS_100,
+    ],
     [1, 0.85, 0.75, 0.7, 0.55]
   );
 
@@ -78,10 +87,9 @@ const SquidGame = () => {
     <div className="squid-game-container" ref={containerRef}>
       {/* Squid game grid */}
       <motion.div
-        className="flex-1"
+        className="w-full flex-1"
         style={{
           background: backgroundColor,
-          width: "100%",
         }}
       >
         <div className="container fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform">
