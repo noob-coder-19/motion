@@ -34,7 +34,7 @@ const SquidGame = () => {
   const CIRCLE_STROKE_WIDTH = SQUID_GAME_THICKNESS;
   const CIRCLE_CIRCUMFERENCE = 2 * Math.PI * CIRCLE_RADIUS;
   const SVG_SIZE =
-    2 * (CIRCLE_RADIUS + CIRCLE_STROKE_WIDTH / 2) + SQUID_GAME_THICKNESS; // Added 12px buffer
+    2 * (CIRCLE_RADIUS + CIRCLE_STROKE_WIDTH / 2) + SQUID_GAME_THICKNESS; // Added SQUID_GAME_THICKNESS as buffer
   const CIRCLE_CENTER = SVG_SIZE / 2;
 
   // Letter constants
