@@ -8,8 +8,8 @@ import {
   SCROLL_PROGRESS_75,
   SCROLL_PROGRESS_85,
   SCROLL_PROGRESS_100,
-  SQUID_GAME_THICKNESS,
 } from "../../constants";
+import { useSquidGameDimensions } from "../../hooks/use-squid-game-dimensions";
 import MotionTrapezoid from "../motion-components/trapezoid";
 
 interface LetterSProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -22,6 +22,7 @@ const LetterS = ({
   scrollYProgress,
   ...props
 }: LetterSProps) => {
+  const { thickness: SQUID_GAME_THICKNESS } = useSquidGameDimensions();
   const SEMI_CIRCLE_OUTER_RADIUS = (LETTERS_WIDTH + SQUID_GAME_THICKNESS) / 4;
   const SEMI_CIRCLE_CENTERLINE_RADIUS =
     SEMI_CIRCLE_OUTER_RADIUS - SQUID_GAME_THICKNESS / 2;

@@ -6,9 +6,11 @@ import {
   SCROLL_PROGRESS_6_25,
   SCROLL_PROGRESS_25,
   SCROLL_PROGRESS_50,
-  SQUID_GAME_THICKNESS,
-  SQUID_GAME_WIDTH,
+  SCROLL_PROGRESS_75,
+  SCROLL_PROGRESS_90,
+  SCROLL_PROGRESS_100,
 } from "../constants";
+import { useSquidGameDimensions } from "../hooks/use-squid-game-dimensions";
 import LetterA from "./letters/letter-a";
 import LetterH from "./letters/letter-h";
 import LetterS from "./letters/letter-s";
@@ -20,17 +22,19 @@ import Triangle from "./phase-1-components/triangle";
 
 const SquidGame = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress: scrollYProgressActual } = useScroll({
+  const { scrollYProgress } = useScroll({
     target: containerRef,
   });
-  const scrollYProgress = useTransform(() => scrollYProgressActual.get() * 2);
+  const { width: SQUID_GAME_WIDTH, thickness: SQUID_GAME_THICKNESS } =
+    useSquidGameDimensions();
 
   // Derived circle constants
   const CIRCLE_DIAMETER = 0.5 * SQUID_GAME_WIDTH;
   const CIRCLE_RADIUS = CIRCLE_DIAMETER / 2;
   const CIRCLE_STROKE_WIDTH = SQUID_GAME_THICKNESS;
   const CIRCLE_CIRCUMFERENCE = 2 * Math.PI * CIRCLE_RADIUS;
-  const SVG_SIZE = 2 * (CIRCLE_RADIUS + CIRCLE_STROKE_WIDTH / 2) + 12; // Added 12px buffer
+  const SVG_SIZE =
+    2 * (CIRCLE_RADIUS + CIRCLE_STROKE_WIDTH / 2) + SQUID_GAME_THICKNESS; // Added SQUID_GAME_THICKNESS as buffer
   const CIRCLE_CENTER = SVG_SIZE / 2;
 
   // Letter constants
@@ -66,7 +70,13 @@ const SquidGame = () => {
 
   const backgroundOpacity = useTransform(
     scrollYProgress,
-    [0, 0.5, 0.75, 0.9, 1],
+    [
+      SCROLL_PROGRESS_0,
+      SCROLL_PROGRESS_50,
+      SCROLL_PROGRESS_75,
+      SCROLL_PROGRESS_90,
+      SCROLL_PROGRESS_100,
+    ],
     [1, 0.85, 0.75, 0.7, 0.55]
   );
 
@@ -79,10 +89,9 @@ const SquidGame = () => {
     <div className="squid-game-container" ref={containerRef}>
       {/* Squid game grid */}
       <motion.div
-        className="flex-1"
+        className="w-full flex-1"
         style={{
           background: backgroundColor,
-          width: "100%",
         }}
       >
         <div className="container fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform">

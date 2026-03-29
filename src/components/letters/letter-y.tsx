@@ -5,8 +5,8 @@ import {
   SCROLL_PROGRESS_63_75,
   SCROLL_PROGRESS_72_5,
   SCROLL_PROGRESS_87_5,
-  SQUID_GAME_THICKNESS,
 } from "../../constants";
+import { useSquidGameDimensions } from "../../hooks/use-squid-game-dimensions";
 import MotionTrapezoid from "../motion-components/trapezoid";
 
 interface LetterYProps {
@@ -19,6 +19,8 @@ const LetterY = ({
   scrollYProgress,
   ...props
 }: LetterYProps) => {
+  const { thickness: SQUID_GAME_THICKNESS } = useSquidGameDimensions();
+
   const VERTICAL_BAR_WIDTH =
     (LETTERS_WIDTH + 4 * SQUID_GAME_THICKNESS) / Math.sqrt(3);
 
