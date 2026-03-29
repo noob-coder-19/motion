@@ -20,10 +20,9 @@ import Triangle from "./phase-1-components/triangle";
 
 const SquidGame = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress: scrollYProgressActual } = useScroll({
+  const { scrollYProgress } = useScroll({
     target: containerRef,
   });
-  const scrollYProgress = useTransform(() => scrollYProgressActual.get() * 2);
 
   // Derived circle constants
   const CIRCLE_DIAMETER = 0.5 * SQUID_GAME_WIDTH;
