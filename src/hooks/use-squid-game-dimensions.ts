@@ -7,17 +7,34 @@ import {
   SQUID_GAME_WIDTH_DESKTOP,
 } from "../constants";
 
-const compactMediaQuery = (): MediaQueryList =>
-  window.matchMedia(`(max-width: ${SQUID_GAME_COMPACT_BREAKPOINT_PX}px)`);
+const compactMediaQuery = (): MediaQueryList | null => {
+  if (typeof window === "undefined") {
+    return null;
+  }
+
+  return window.matchMedia(
+    `(max-width: ${SQUID_GAME_COMPACT_BREAKPOINT_PX}px)`
+  );
+};
 
 function subscribe(onChange: () => void): () => void {
   const mq = compactMediaQuery();
-  mq.addEventListener("change", onChange);
-  return () => mq.removeEventListener("change", onChange);
+  if (mq) {
+    mq.addEventListener("change", onChange);
+  }
+  return () => {
+    if (mq) {
+      mq.removeEventListener("change", onChange);
+    }
+  };
 }
 
 function getSnapshot(): boolean {
-  return compactMediaQuery().matches;
+  const mq = compactMediaQuery();
+  if (mq) {
+    return mq.matches;
+  }
+  return false;
 }
 
 function getServerSnapshot(): boolean {
