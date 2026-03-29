@@ -15,6 +15,7 @@
 
 html {
   scroll-behavior: smooth;
+  /* cursor: none; */
 }
 
 #root {
@@ -100,7 +101,6 @@ html {
   position: fixed;
   width: var(--cursor-size);
   height: var(--cursor-size);
-  cursor: none;
   background-color: var(--color-white-100);
   mask-image: url("/mask.svg");
   mask-repeat: no-repeat;
