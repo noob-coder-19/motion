@@ -1,5 +1,17 @@
 export const SQUID_GAME_WIDTH = 160;
 export const SQUID_GAME_THICKNESS = 12;
+
+/** Default (large) layout — use `useSquidGameDimensions()` in components. */
+export const SQUID_GAME_WIDTH_DESKTOP = 160;
+export const SQUID_GAME_THICKNESS_DESKTOP = 12;
+
+/** Mid / small viewports — matches `max-width: SQUID_GAME_COMPACT_BREAKPOINT_PX`. */
+export const SQUID_GAME_WIDTH_COMPACT = 112;
+export const SQUID_GAME_THICKNESS_COMPACT = 9;
+
+/** Viewport width (px) at or below which compact dimensions apply. */
+export const SQUID_GAME_COMPACT_BREAKPOINT_PX = 768;
+
 export const SQUID_GAME_TRIANGLE_SCALE_DOWN_FACTOR = 0.5;
 export const LETTERS_SCALE_DOWN_FACTOR = 0.5;
 

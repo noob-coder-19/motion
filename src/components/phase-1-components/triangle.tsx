@@ -6,10 +6,9 @@ import {
   SCROLL_PROGRESS_16_67,
   SCROLL_PROGRESS_37_5,
   SCROLL_PROGRESS_50,
-  SQUID_GAME_THICKNESS,
   SQUID_GAME_TRIANGLE_SCALE_DOWN_FACTOR,
-  SQUID_GAME_WIDTH,
 } from "../../constants";
+import { useSquidGameDimensions } from "../../hooks/use-squid-game-dimentions";
 import MotionTrapezoid from "../motion-components/trapezoid";
 
 interface TriangleProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -17,6 +16,8 @@ interface TriangleProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const Triangle = ({ scrollYProgress, ...props }: TriangleProps) => {
+  const { width: SQUID_GAME_WIDTH, thickness: SQUID_GAME_THICKNESS } =
+    useSquidGameDimensions();
   const HEIGHT = (Math.sqrt(3) * SQUID_GAME_WIDTH) / 2;
 
   const sideOpacity = useTransform(

@@ -9,9 +9,8 @@ import {
   SCROLL_PROGRESS_75,
   SCROLL_PROGRESS_90,
   SCROLL_PROGRESS_100,
-  SQUID_GAME_THICKNESS,
-  SQUID_GAME_WIDTH,
 } from "../constants";
+import { useSquidGameDimensions } from "../hooks/use-squid-game-dimentions";
 import LetterA from "./letters/letter-a";
 import LetterH from "./letters/letter-h";
 import LetterS from "./letters/letter-s";
@@ -26,13 +25,16 @@ const SquidGame = () => {
   const { scrollYProgress } = useScroll({
     target: containerRef,
   });
+  const { width: SQUID_GAME_WIDTH, thickness: SQUID_GAME_THICKNESS } =
+    useSquidGameDimensions();
 
   // Derived circle constants
   const CIRCLE_DIAMETER = 0.5 * SQUID_GAME_WIDTH;
   const CIRCLE_RADIUS = CIRCLE_DIAMETER / 2;
   const CIRCLE_STROKE_WIDTH = SQUID_GAME_THICKNESS;
   const CIRCLE_CIRCUMFERENCE = 2 * Math.PI * CIRCLE_RADIUS;
-  const SVG_SIZE = 2 * (CIRCLE_RADIUS + CIRCLE_STROKE_WIDTH / 2) + 12; // Added 12px buffer
+  const SVG_SIZE =
+    2 * (CIRCLE_RADIUS + CIRCLE_STROKE_WIDTH / 2) + SQUID_GAME_THICKNESS; // Added 12px buffer
   const CIRCLE_CENTER = SVG_SIZE / 2;
 
   // Letter constants

@@ -8,8 +8,8 @@ import {
   SCROLL_PROGRESS_80,
   SCROLL_PROGRESS_95,
   SCROLL_PROGRESS_100,
-  SQUID_GAME_THICKNESS,
 } from "../../constants";
+import { useSquidGameDimensions } from "../../hooks/use-squid-game-dimentions";
 import MotionTrapezoid from "../motion-components/trapezoid";
 
 interface LetterAProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -22,6 +22,7 @@ const LetterA = ({
   scrollYProgress,
   ...props
 }: LetterAProps) => {
+  const { thickness: SQUID_GAME_THICKNESS } = useSquidGameDimensions();
   const LETTER_A_WIDTH = (2 * LETTERS_WIDTH) / Math.sqrt(3);
 
   const rightHorizontalBarWidth = useTransform(

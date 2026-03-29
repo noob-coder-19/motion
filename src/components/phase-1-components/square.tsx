@@ -6,9 +6,8 @@ import {
   SCROLL_PROGRESS_25,
   SCROLL_PROGRESS_37_5,
   SCROLL_PROGRESS_50,
-  SQUID_GAME_THICKNESS,
-  SQUID_GAME_WIDTH,
 } from "../../constants";
+import { useSquidGameDimensions } from "../../hooks/use-squid-game-dimentions";
 import MotionTrapezoid from "../motion-components/trapezoid";
 
 interface SquareProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -16,6 +15,8 @@ interface SquareProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const Square = ({ scrollYProgress, ...props }: SquareProps) => {
+  const { width: SQUID_GAME_WIDTH, thickness: SQUID_GAME_THICKNESS } =
+    useSquidGameDimensions();
   /***** Top square side animation controls *****/
   const topSideWidth = useTransform(
     scrollYProgress,
