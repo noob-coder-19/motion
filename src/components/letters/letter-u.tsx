@@ -70,13 +70,18 @@ const LetterU = ({
 
       {/* Semi Circle Outer Radius: {LETTERS_WIDTH * 0.5}px */}
       <div
-        className="absolute bottom-0 left-0"
+        className="absolute bottom-0 left-0 overflow-hidden"
         style={{
           width: `${2 * SEMI_CIRCLE_OUTER_RADIUS}px`,
           height: `${SEMI_CIRCLE_OUTER_RADIUS}px`,
         }}
       >
-        <svg aria-label="Semi Circle" height="100%" width="100%">
+        <svg
+          aria-label="Semi Circle"
+          className="overflow-hidden"
+          height="100%"
+          width="100%"
+        >
           <motion.circle
             cx={SEMI_CIRCLE_OUTER_RADIUS}
             cy={0}
@@ -85,7 +90,7 @@ const LetterU = ({
             stroke="#f1f1f1"
             strokeWidth={SQUID_GAME_THICKNESS}
             style={{
-              strokeDasharray: SEMI_CIRCLE_CIRCUMFERENCE,
+              strokeDasharray: SEMI_CIRCLE_CIRCUMFERENCE / 2,
               strokeDashoffset: semiCircleStrokeDashoffset,
               transformOrigin: "center center",
             }}
@@ -96,12 +101,11 @@ const LetterU = ({
       {/* Horizontal Bar */}
       <MotionTrapezoid
         angle={"0%"}
+        className="absolute right-0"
         height={`${LETTERS_WIDTH}px`}
         style={{
-          position: "absolute",
           height: rightHorizontalBarHeight,
           bottom: `${SEMI_CIRCLE_OUTER_RADIUS}px`,
-          right: 0,
         }}
         width={`${SQUID_GAME_THICKNESS}px`}
       />

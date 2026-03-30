@@ -43,7 +43,7 @@ const SquidGame = () => {
   const strokeDashoffsetClockwise = useTransform(
     scrollYProgress,
     [SCROLL_PROGRESS_0, SCROLL_PROGRESS_25],
-    [0, -CIRCLE_CIRCUMFERENCE]
+    [0, CIRCLE_CIRCUMFERENCE]
   );
 
   const circleTrapezoidWidth = useTransform(
@@ -112,18 +112,15 @@ const SquidGame = () => {
               width={`${SQUID_GAME_THICKNESS}px`}
             />
             <svg aria-label="Circle" height={SVG_SIZE} width={SVG_SIZE}>
-              <motion.circle
-                cx={CIRCLE_CENTER}
-                cy={CIRCLE_CENTER}
+              {/* CCW path from 12 o'clock — positive offset erases clockwise */}
+              <motion.path
+                d={`M ${CIRCLE_CENTER} ${CIRCLE_CENTER - CIRCLE_RADIUS} A ${CIRCLE_RADIUS} ${CIRCLE_RADIUS} 0 0 0 ${CIRCLE_CENTER} ${CIRCLE_CENTER + CIRCLE_RADIUS} A ${CIRCLE_RADIUS} ${CIRCLE_RADIUS} 0 0 0 ${CIRCLE_CENTER} ${CIRCLE_CENTER - CIRCLE_RADIUS}`}
                 fill="none"
-                r={CIRCLE_RADIUS}
                 stroke={"#f1f1f1"}
                 strokeWidth={CIRCLE_STROKE_WIDTH}
                 style={{
                   strokeDasharray: CIRCLE_CIRCUMFERENCE,
                   strokeDashoffset: strokeDashoffsetClockwise,
-                  rotate: -90,
-                  transformOrigin: "center center",
                 }}
               />
             </svg>
@@ -154,18 +151,15 @@ const SquidGame = () => {
               width={`${SQUID_GAME_THICKNESS}px`}
             />
             <svg aria-label="Circle" height={SVG_SIZE} width={SVG_SIZE}>
-              <motion.circle
-                cx={CIRCLE_CENTER}
-                cy={CIRCLE_CENTER}
+              {/* CCW path from 6 o'clock — positive offset erases clockwise */}
+              <motion.path
+                d={`M ${CIRCLE_CENTER} ${CIRCLE_CENTER + CIRCLE_RADIUS} A ${CIRCLE_RADIUS} ${CIRCLE_RADIUS} 0 0 0 ${CIRCLE_CENTER} ${CIRCLE_CENTER - CIRCLE_RADIUS} A ${CIRCLE_RADIUS} ${CIRCLE_RADIUS} 0 0 0 ${CIRCLE_CENTER} ${CIRCLE_CENTER + CIRCLE_RADIUS}`}
                 fill="none"
-                r={CIRCLE_RADIUS}
                 stroke={"#f1f1f1"}
                 strokeWidth={CIRCLE_STROKE_WIDTH}
                 style={{
                   strokeDasharray: CIRCLE_CIRCUMFERENCE,
                   strokeDashoffset: strokeDashoffsetClockwise,
-                  rotate: 90,
-                  transformOrigin: "center center",
                 }}
               />
             </svg>
