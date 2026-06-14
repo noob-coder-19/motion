@@ -49,7 +49,7 @@ const LetterS = ({
   const topSemiCircleStrokeDashoffset = useTransform(
     scrollYProgress,
     [SCROLL_PROGRESS_60, SCROLL_PROGRESS_70],
-    [-CIRCUMFERENCE / 2, 0]
+    [CIRCUMFERENCE / 2, 0]
   );
 
   const bottomSemiCircleStrokeDashoffset = useTransform(
@@ -97,18 +97,14 @@ const LetterS = ({
           style={{ overflow: "hidden" }}
           width={SEMI_CIRCLE_OUTER_RADIUS}
         >
-          <motion.circle
-            cx={SEMI_CIRCLE_OUTER_RADIUS}
-            cy={SEMI_CIRCLE_OUTER_RADIUS}
+          <motion.path
+            d={`M ${SEMI_CIRCLE_OUTER_RADIUS} ${SEMI_CIRCLE_OUTER_RADIUS - SEMI_CIRCLE_CENTERLINE_RADIUS} A ${SEMI_CIRCLE_CENTERLINE_RADIUS} ${SEMI_CIRCLE_CENTERLINE_RADIUS} 0 0 0 ${SEMI_CIRCLE_OUTER_RADIUS - SEMI_CIRCLE_CENTERLINE_RADIUS} ${SEMI_CIRCLE_OUTER_RADIUS} A ${SEMI_CIRCLE_CENTERLINE_RADIUS} ${SEMI_CIRCLE_CENTERLINE_RADIUS} 0 0 0 ${SEMI_CIRCLE_OUTER_RADIUS} ${SEMI_CIRCLE_OUTER_RADIUS + SEMI_CIRCLE_CENTERLINE_RADIUS}`}
             fill="none"
-            r={SEMI_CIRCLE_CENTERLINE_RADIUS}
             stroke="#f1f1f1"
             strokeWidth={SQUID_GAME_THICKNESS}
             style={{
-              rotate: "90deg",
               strokeDasharray: CIRCUMFERENCE / 2,
               strokeDashoffset: topSemiCircleStrokeDashoffset,
-              transformOrigin: "center center",
             }}
           />
         </svg>

@@ -43,7 +43,7 @@ const LetterU = ({
   const semiCircleStrokeDashoffset = useTransform(
     scrollYProgress,
     [SCROLL_PROGRESS_0, SCROLL_PROGRESS_60, SCROLL_PROGRESS_85],
-    [-0.5 * SEMI_CIRCLE_CIRCUMFERENCE, -0.5 * SEMI_CIRCLE_CIRCUMFERENCE, 0]
+    [0.5 * SEMI_CIRCLE_CIRCUMFERENCE, 0.5 * SEMI_CIRCLE_CIRCUMFERENCE, 0]
   );
 
   return (
@@ -82,17 +82,15 @@ const LetterU = ({
           height="100%"
           width="100%"
         >
-          <motion.circle
-            cx={SEMI_CIRCLE_OUTER_RADIUS}
-            cy={0}
+          {/* CCW path from 9 o'clock → 6 o'clock → 3 o'clock; positive offset Safari-safe */}
+          <motion.path
+            d={`M ${SEMI_CIRCLE_OUTER_RADIUS - SEMI_CIRCLE_CENTERLINE_RADIUS} 0 A ${SEMI_CIRCLE_CENTERLINE_RADIUS} ${SEMI_CIRCLE_CENTERLINE_RADIUS} 0 0 0 ${SEMI_CIRCLE_OUTER_RADIUS} ${SEMI_CIRCLE_CENTERLINE_RADIUS} A ${SEMI_CIRCLE_CENTERLINE_RADIUS} ${SEMI_CIRCLE_CENTERLINE_RADIUS} 0 0 0 ${SEMI_CIRCLE_OUTER_RADIUS + SEMI_CIRCLE_CENTERLINE_RADIUS} 0`}
             fill="none"
-            r={SEMI_CIRCLE_CENTERLINE_RADIUS}
             stroke="#f1f1f1"
             strokeWidth={SQUID_GAME_THICKNESS}
             style={{
               strokeDasharray: SEMI_CIRCLE_CIRCUMFERENCE / 2,
               strokeDashoffset: semiCircleStrokeDashoffset,
-              transformOrigin: "center center",
             }}
           />
         </svg>
