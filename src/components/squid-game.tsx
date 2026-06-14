@@ -86,7 +86,7 @@ const SquidGame = () => {
   );
 
   return (
-    <div className="squid-game-container" ref={containerRef}>
+    <div className="squid-game-container snap-start" ref={containerRef}>
       {/* Squid game grid */}
       <motion.div
         className="w-full flex-1"

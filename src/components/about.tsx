@@ -67,7 +67,7 @@ const About = () => {
 
   return (
     <section
-      className="scanlines relative flex h-screen items-center justify-center overflow-hidden bg-black font-mono"
+      className="scanlines relative flex h-screen snap-start items-center justify-center overflow-hidden bg-black font-mono"
       id="about"
       ref={sectionRef}
     >
@@ -80,9 +80,6 @@ const About = () => {
             initial={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <span className="text-terminal-green-dim text-xs tracking-widest">
-              [SQUID GAME ORGANIZATION]
-            </span>
             <span className="text-terminal-green-dim text-xs">
               PLAYER DATABASE v2.1
             </span>
