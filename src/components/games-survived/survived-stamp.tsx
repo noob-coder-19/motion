@@ -1,28 +1,30 @@
-import { motion } from "motion/react";
+import { type MotionValue, motion, useTransform } from "motion/react";
 
-const STAMP_DELAY_S = 0.6;
+const SurvivedBar = ({
+  scrollYProgress,
+}: {
+  scrollYProgress: MotionValue<number>;
+}) => {
+  const wipeWidth = useTransform(scrollYProgress, [0.85, 1], ["0%", "100%"]);
+  const opacity = useTransform(scrollYProgress, [0.82, 0.88], [0, 1]);
 
-const SurvivedStamp = ({ inView }: { inView: boolean }) => (
-  <motion.div
-    animate={
-      inView
-        ? { scale: 1, rotate: -6, opacity: 1 }
-        : { scale: 0, rotate: -12, opacity: 0 }
-    }
-    aria-hidden="true"
-    className="absolute right-4 bottom-4 border-2 border-pink-500 border-dashed px-3 py-1.5"
-    initial={{ scale: 0, rotate: -12, opacity: 0 }}
-    transition={{
-      type: "spring",
-      stiffness: 600,
-      damping: 15,
-      delay: STAMP_DELAY_S,
-    }}
-  >
-    <span className="whitespace-nowrap font-bold text-pink-500 text-xs uppercase tracking-widest">
-      STATUS: SURVIVED
-    </span>
-  </motion.div>
-);
+  return (
+    <motion.div
+      className="pointer-events-none absolute right-0 bottom-0 left-0 z-10 hidden h-12 items-center justify-center md:flex"
+      style={{ opacity }}
+    >
+      <motion.div
+        className="absolute inset-y-0 left-0 bg-gradient-to-r from-pink-500/80 via-pink-500/40 to-transparent"
+        style={{ width: wipeWidth }}
+      />
+      <motion.span
+        className="relative z-10 font-bold text-white-100 text-xs uppercase tracking-[0.4em]"
+        style={{ opacity }}
+      >
+        Status: Survived
+      </motion.span>
+    </motion.div>
+  );
+};
 
-export default SurvivedStamp;
+export default SurvivedBar;
