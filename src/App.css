@@ -14,6 +14,11 @@
   --color-pink-500: var(--color-pink-500);
   --color-terminal-green: var(--color-terminal-green);
   --color-terminal-green-dim: var(--color-terminal-green-dim);
+  --color-teal: #037a76;
+  --color-gold: #ffd700;
+  --color-card-bg: #1a1a1a;
+  --color-card-border: #333333;
+  --color-muted-gray: #555555;
   --cursor-size: 1rem;
 }
 
