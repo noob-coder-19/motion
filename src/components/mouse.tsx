@@ -7,8 +7,8 @@ const Mouse = () => {
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
 
-  const springX = useSpring(mouseX, { damping: 20, stiffness: 300 });
-  const springY = useSpring(mouseY, { damping: 20, stiffness: 300 });
+  const springX = useSpring(mouseX, { damping: 80, stiffness: 1800 });
+  const springY = useSpring(mouseY, { damping: 80, stiffness: 1800 });
 
   useEffect(() => {
     const move = (e: MouseEvent) => {

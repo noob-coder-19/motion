@@ -1,4 +1,4 @@
-interface TrapezoidProps {
+interface TrapezoidProps extends React.HTMLAttributes<HTMLDivElement> {
   angle?: number | string;
   color?: string;
   height?: number | string;
@@ -16,6 +16,7 @@ const Trapezoid = ({
   style = {},
   variant = "top",
   ref,
+  className,
 }: TrapezoidProps) => {
   let clipPath = "";
   if (variant === "top") {
@@ -30,6 +31,7 @@ const Trapezoid = ({
 
   return (
     <div
+      className={className}
       ref={ref}
       style={{
         height,
