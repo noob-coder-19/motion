@@ -4,12 +4,16 @@
   --color-white-100: #f1f1f1;
   --color-pink-400: #f44786;
   --color-pink-500: #ed1b76;
+  --color-terminal-green: #00ff41;
+  --color-terminal-green-dim: #00cc33;
 }
 
 @theme {
   --color-white-100: var(--color-white-100);
   --color-pink-400: var(--color-pink-400);
   --color-pink-500: var(--color-pink-500);
+  --color-terminal-green: var(--color-terminal-green);
+  --color-terminal-green-dim: var(--color-terminal-green-dim);
   --cursor-size: 1rem;
 }
 
@@ -74,4 +78,34 @@ html {
   width: 100%;
   height: 8px;
   background-color: var(--color-white-100);
+}
+
+.scanlines::after {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  content: "";
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15) 0px,
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.terminal-cursor {
+  animation: blink 1s step-end infinite;
+  @apply inline-block w-2.5 h-5 align-text-bottom bg-terminal-green;
 }
