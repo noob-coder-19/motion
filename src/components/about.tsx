@@ -41,7 +41,7 @@ const ProfileRow = ({
 
 const About = () => {
   const sectionRef = useRef<HTMLElement>(null);
-  const inView = useInView(sectionRef, { once: true, amount: 0.3 });
+  const inView = useInView(sectionRef, { once: true, amount: 0.6 });
   const [phase, setPhase] = useState(0);
 
   useEffect(() => {
